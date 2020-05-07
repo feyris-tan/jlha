@@ -10,3 +10,4 @@ I have use for this library in a modern Java project using Quarkus, therefore I 
 - The project got transformed from an Eclipse Project to a Maven project - which makes it a lot easier to use in modern project.
 - The binary is now built using Java 11. The original japanese README mentioned JDK 1.1
 - The code is well documented, but in Shift-JIS Text Encoding. While this is fine, I converted it to UTF-8 because most IDEs should deal better with this.
+- Some methods depreacted in Java 11 were called. This have been replaced with equivalent method calls.

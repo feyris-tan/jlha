@@ -7,8 +7,10 @@
 
 package jp.gr.java_conf.turner.util.lha;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.io.*;
+import java.util.GregorianCalendar;
 
 /**
  * このクラスはLHAのファイルエントリ情報を表します。
@@ -365,25 +367,28 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	private static long dosToJavaTime(long dtime) {
-		Date d = new Date(
-				(int)(((dtime >> 25) & 0x7f) + 80),
-				(int)(((dtime >> 21) & 0x0f) - 1),
-				(int)((dtime >> 16) & 0x1f),
-				(int)((dtime >> 11) & 0x1f),
-				(int)((dtime >> 5) & 0x3f),
-				(int)((dtime << 1) & 0x3e) );
-		return d.getTime();
+		int year = (int)(((dtime >> 25) & 0x7f) + 80);
+		int month = (int)(((dtime >> 21) & 0x0f) - 1);
+		int day = (int)((dtime >> 16) & 0x1f);
+		int hour = (int)((dtime >> 11) & 0x1f);
+		int minute = (int)((dtime >> 5) & 0x3f);
+		int second = (int)((dtime << 1) & 0x3e);
+
+		Calendar instance = GregorianCalendar.getInstance();
+		instance.set(year,month,day,hour,minute,second);
+		return instance.getTime().getTime();
 	}
 
 	private static long javaToDosTime(long time) {
-		Date d = new Date(time);
-		int year = d.getYear() + 1900;
+		Calendar instance = GregorianCalendar.getInstance();
+		instance.setTime(new Date(time));
+		int year = instance.get(Calendar.YEAR) + 1900;
 		if (year < 1980) {
 			return (1 << 21) | (1 << 16);
 		}
-		return (year - 1980) << 25 | (d.getMonth() + 1) << 21 |
-			   d.getDate() << 16 | d.getHours() << 11 | d.getMinutes() << 5 |
-			   d.getSeconds() >> 1;
+		return (year - 1980) << 25 | (instance.get(Calendar.MONTH) + 1) << 21 |
+			   instance.get(Calendar.DAY_OF_MONTH) << 16 | instance.get(Calendar.MINUTE) << 11 |
+				instance.get(Calendar.MINUTE) << 5 | instance.get(Calendar.SECOND) >> 1;
 	}
 
 	/**
@@ -814,10 +819,10 @@ public class LhaEntry implements Cloneable, LhaConstants{
 				ret = new String(b, off, len, enc );
 			}
 			else{
-				ret =  new String(b, 0, off, len);
+				ret = new String(b,off,len);
 			}
 		}catch( NoSuchMethodError e ){
-			ret =  new String(b, 0, off, len);
+			ret = new String(b,off,len);
 		}
 		return ret;
 	}
@@ -828,16 +833,10 @@ public class LhaEntry implements Cloneable, LhaConstants{
 		return newString( b, 0, b.length, enc );
 	}
 
-	private static void getBytes( String str, byte[] b, int off, int len )
-		throws IOException
-	{
-		try{
-			byte[] work;
-			work = str.getBytes( SJIS_ENCODING );
-			System.arraycopy( work, 0, b, off, Math.min( work.length, len ) );
-		}catch( NoSuchMethodError e ){
-			str.getBytes( 0, Math.min( str.length(), len ), b, off );
-		}
+	private static void getBytes( String str, byte[] b, int off, int len ) throws UnsupportedEncodingException {
+		byte[] work;
+		work = str.getBytes( SJIS_ENCODING );
+		System.arraycopy( work, 0, b, off, Math.min( work.length, len ) );
 	}
 
 }
