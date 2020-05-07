@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 /**
- * LHA 展開で発生する例外クラス.
+ * LHA 螻暮幕縺ｧ逋ｺ逕溘☆繧倶ｾ句､悶け繝ｩ繧ｹ.
  *
  */
 public class LhaException extends IOException 

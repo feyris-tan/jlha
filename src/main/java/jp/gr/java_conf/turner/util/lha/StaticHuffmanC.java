@@ -11,16 +11,16 @@ import java.io.*;
 
 
 /**
- * ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘.
+ * ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸.
  * 
  * @author TURNER
  */
 class StaticHuffmanC extends StaticHuffman
 {
 	/**
-	 * ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * 
-	 * @param table_size ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³B
+	 * @param table_size ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•ã€‚
 	 */
 	protected StaticHuffmanC( int table_size )
 	{
@@ -28,11 +28,11 @@ class StaticHuffmanC extends StaticHuffman
 	}
 
 //	/**
-//	 * ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş.
+//	 * ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€.
 //	 * 
-//	 * @param effective_len_bits ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚ğ“Ç‚İ‚Şƒrƒbƒg”
-//	 * @param huffman   ‚±‚Ìƒnƒtƒ}ƒ“«‘‚ğ“Ç‚İ‚Ş‚Ì‚Ég—p‚·‚éƒnƒtƒ}ƒ“«‘
-//	 * @param cutter    “Ç‚İ‚İ‚Ég—p‚·‚éƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+//	 * @param effective_len_bits ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã‚’èª­ã¿è¾¼ã‚€ãƒ“ãƒƒãƒˆæ•°
+//	 * @param huffman   ã“ã®ãƒãƒ•ãƒãƒ³è¾æ›¸ã‚’èª­ã¿è¾¼ã‚€ã®ã«ä½¿ç”¨ã™ã‚‹ãƒãƒ•ãƒãƒ³è¾æ›¸
+//	 * @param cutter    èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 //	 */
 //	protected void loadFrom( int effective_len_bits, int special_index,
 //			BitCutter cutter )
@@ -40,8 +40,8 @@ class StaticHuffmanC extends StaticHuffman
 //	{
 ///		readTableLen( effective_len_bits, special_index, cutter );
 //
-//		//ƒR[ƒh‚ª‚P‚Â‚µ‚©‚È‚¢ƒe[ƒuƒ‹‚Ìê‡
-//		//‚±‚Ì‚Æ‚«Aƒnƒtƒ}ƒ“ƒR[ƒh‚ÌŠ„‚èU‚è‚Í‚¢‚ç‚È‚¢B
+//		//ã‚³ãƒ¼ãƒ‰ãŒï¼‘ã¤ã—ã‹ãªã„ãƒ†ãƒ¼ãƒ–ãƒ«ã®å ´åˆ
+//		//ã“ã®ã¨ãã€ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®å‰²ã‚ŠæŒ¯ã‚Šã¯ã„ã‚‰ãªã„ã€‚
 //		if( leafs.length > 1 ){
 //			makeTableCode();
 //		}
@@ -58,11 +58,11 @@ class StaticHuffmanC extends StaticHuffman
 */
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh‚Ìƒrƒbƒg”‚ğ“Ç‚İ‚Ş.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆæ•°ã‚’èª­ã¿è¾¼ã‚€.
 	 * 
-	 * @param effective_len_bits ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³‚ğ“Ç‚İ‚Ş‚½‚ß‚Ìƒrƒbƒg”
-	 * @param huffman    ‚±‚Ìƒnƒtƒ}ƒ“«‘‚ğ“Ç‚İ‚Ş‚Ì‚Ég—p‚·‚éƒnƒtƒ}ƒ“«‘
-	 * @param cutter     “Ç‚İ‚İ‚Ég—p‚·‚éƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param effective_len_bits ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®ãƒ“ãƒƒãƒˆæ•°
+	 * @param huffman    ã“ã®ãƒãƒ•ãƒãƒ³è¾æ›¸ã‚’èª­ã¿è¾¼ã‚€ã®ã«ä½¿ç”¨ã™ã‚‹ãƒãƒ•ãƒãƒ³è¾æ›¸
+	 * @param cutter     èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	protected void readTableLen( int effective_len_bits, int special_index,
 			BitCutter cutter )

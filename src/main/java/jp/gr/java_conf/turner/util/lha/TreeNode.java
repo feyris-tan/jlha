@@ -8,12 +8,12 @@
 package jp.gr.java_conf.turner.util.lha;
 
 /**
- * ƒnƒtƒ}ƒ“ƒcƒŠ[—p‚Ìƒm[ƒh.
+ * ãƒãƒ•ãƒãƒ³ãƒ„ãƒªãƒ¼ç”¨ã®ãƒãƒ¼ãƒ‰.
  */
 abstract class TreeNode
 {
-	Branch parent = null;//e(DynamicHuffman‚Åg—p)
-	int freq = 0;       //ƒnƒtƒ}ƒ“•„†‚Ì•p“xƒJƒEƒ“ƒ^(DynamicHuffman‚Åg—p)
-	int index = 0;      //•p“x‡‚Åƒ\[ƒg‚³‚ê‚½‚ÌƒCƒ“ƒfƒbƒNƒX
-	                    //ª(DynamicHuffman‚Åg—p)
+	Branch parent = null;//è¦ª(DynamicHuffmanã§ä½¿ç”¨)
+	int freq = 0;       //ãƒãƒ•ãƒãƒ³ç¬¦å·ã®é »åº¦ã‚«ã‚¦ãƒ³ã‚¿(DynamicHuffmanã§ä½¿ç”¨)
+	int index = 0;      //é »åº¦é †ã§ã‚½ãƒ¼ãƒˆã•ã‚ŒãŸæ™‚ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	                    //â†‘(DynamicHuffmanã§ä½¿ç”¨)
 }

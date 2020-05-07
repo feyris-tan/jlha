@@ -9,7 +9,7 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * ”CˆÓ‚Ìƒrƒbƒg”‚Ìƒf[ƒ^‚ð‘‚«o‚¹‚éo—ÍƒXƒgƒŠ[ƒ€.
+ * ä»»æ„ã®ãƒ“ãƒƒãƒˆæ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã›ã‚‹å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ .
  *
  * @author TURNER
  */
@@ -33,9 +33,9 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  ‚PƒoƒCƒg‚É–ž‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ð‚O‚Å–„‚ß‚½ŒãA‚PƒoƒCƒg‘‚«ž‚Þ.
+	 *  ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’ï¼ã§åŸ‹ã‚ãŸå¾Œã€ï¼‘ãƒã‚¤ãƒˆæ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param b    ‘‚«ž‚Þƒf[ƒ^
+	 * @param b    æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿
 	 * 
 	 * @author  TURNER
 	 */
@@ -49,11 +49,11 @@ class BitPacker extends OutputStream{
 
 
 	/**
-	 *  ‚PƒoƒCƒg‚É–ž‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ð‚O‚Å–„‚ß‚½ŒãA•¡”ƒoƒCƒg‘‚«ž‚Þ.
+	 *  ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’ï¼ã§åŸ‹ã‚ãŸå¾Œã€è¤‡æ•°ãƒã‚¤ãƒˆæ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param b     ‘‚«ž‚Þƒf[ƒ^‚ÌƒoƒCƒg”z—ñ
-	 * @param off   ‘‚«ž‚Þƒf[ƒ^‚ÌŠJŽnƒIƒtƒZƒbƒg
-	 * @param len   ‘‚«ž‚Þƒf[ƒ^‚Ì’·‚³
+	 * @param b     æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆé…åˆ—
+	 * @param off   æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	 * @param len   æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
 	 * 
 	 * @author      TURNER
 	 */
@@ -66,9 +66,9 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  ‚PƒoƒCƒg‚É–ž‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ð‚O‚Å–„‚ß‚½ŒãA•¡”ƒoƒCƒg‘‚«ž‚Þ.
+	 *  ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’ï¼ã§åŸ‹ã‚ãŸå¾Œã€è¤‡æ•°ãƒã‚¤ãƒˆæ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param b     ‘‚«ž‚Þƒf[ƒ^‚ÌƒoƒCƒg”z—ñ
+	 * @param b     æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆé…åˆ—
 	 * 
 	 * @author      TURNER
 	 */
@@ -79,10 +79,10 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  ”CˆÓ‚Ìƒrƒbƒg”ƒf[ƒ^‚ð‘‚«ž‚Þ.
+	 *  ä»»æ„ã®ãƒ“ãƒƒãƒˆæ•°ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param b ‘‚«ž‚Þƒf[ƒ^
-	 * @param n ‘‚«ž‚Þƒrƒbƒg”
+	 * @param b æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿
+	 * @param n æ›¸ãè¾¼ã‚€ãƒ“ãƒƒãƒˆæ•°
 	 * 
 	 * @author TURNER
 	 */
@@ -104,9 +104,9 @@ class BitPacker extends OutputStream{
 	 }
 
 	/**
-	 *  1ƒrƒbƒg”ƒf[ƒ^‚ð‘‚«ž‚Þ.
+	 *  1ãƒ“ãƒƒãƒˆæ•°ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param b ‘‚«ž‚Þƒrƒbƒg
+	 * @param b æ›¸ãè¾¼ã‚€ãƒ“ãƒƒãƒˆ
 	 * 
 	 * @author TURNER
 	 */
@@ -127,10 +127,10 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  “¯‚¶ƒrƒbƒg‚ÌŒÅ‚Ü‚è‚ð‘‚«ž‚Þ.
+	 *  åŒã˜ãƒ“ãƒƒãƒˆã®å›ºã¾ã‚Šã‚’æ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param b     ‘‚«ž‚Þƒrƒbƒg
-	 * @param len   ‘‚«ž‚Þ’·‚³
+	 * @param b     æ›¸ãè¾¼ã‚€ãƒ“ãƒƒãƒˆ
+	 * @param len   æ›¸ãè¾¼ã‚€é•·ã•
 	 * 
 	 * @author TURNER
 	 */
@@ -161,7 +161,7 @@ class BitPacker extends OutputStream{
 
 
 	/**
-	 *  ƒXƒgƒŠ[ƒ€‚ðƒNƒ[ƒY‚·‚é.
+	 *  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ã‚¯ãƒ­ãƒ¼ã‚ºã™ã‚‹.
 	 * 
 	 * @author TURNER
 	 */
@@ -173,7 +173,7 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  ”¼’[‚Èƒrƒbƒg‚ð‘‚«ž‚ñ‚¾ŒãƒXƒgƒŠ[ƒ€‚ðƒtƒ‰ƒbƒVƒ…‚·‚é.
+	 *  åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’æ›¸ãè¾¼ã‚“ã å¾Œã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹.
 	 * 
 	 * @author TURNER
 	 */
@@ -186,7 +186,7 @@ class BitPacker extends OutputStream{
 
 
 	/**
-	 * ‚PƒoƒCƒg‘‚«ž‚Ý.
+	 * ï¼‘ãƒã‚¤ãƒˆæ›¸ãè¾¼ã¿.
 	 * 
 	 * @author TURNER
 	 */
@@ -200,7 +200,7 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  ƒoƒbƒtƒ@‚ÉŽc‚Á‚Ä‚¢‚é‚PƒoƒCƒg‚É–ž‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚Ì‚¤‚µ‚ë‚É‚O‚ð–„‚ß‚Ä‘‚«ž‚Þ.
+	 *  ãƒãƒƒãƒ•ã‚¡ã«æ®‹ã£ã¦ã„ã‚‹ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã®ã†ã—ã‚ã«ï¼ã‚’åŸ‹ã‚ã¦æ›¸ãè¾¼ã‚€.
 	 * 
 	 * @author TURNER
 	 */
@@ -217,9 +217,9 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  ‘‚«ž‚ÝƒoƒCƒg”ƒJƒEƒ“ƒ^‚ðŽæ“¾‚·‚é.
+	 *  æ›¸ãè¾¼ã¿ãƒã‚¤ãƒˆæ•°ã‚«ã‚¦ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹.
 	 * 
-	 * @return ‘‚«ž‚ÝƒoƒCƒg”
+	 * @return æ›¸ãè¾¼ã¿ãƒã‚¤ãƒˆæ•°
 	 * 
 	 * @author TURNER
 	 */
@@ -228,7 +228,7 @@ class BitPacker extends OutputStream{
 	}
 
 	/**
-	 *  ‘‚«ž‚ÝƒoƒCƒg”ƒJƒEƒ“ƒ^‚ðƒŠƒZƒbƒg‚·‚é.
+	 *  æ›¸ãè¾¼ã¿ãƒã‚¤ãƒˆæ•°ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹.
 	 *j
 	 * @author TURNER
 	 */

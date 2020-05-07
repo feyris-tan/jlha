@@ -10,8 +10,8 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * LHA�t�@�C���f�R�[�_�X�g���[���N���X.
- * �Ή����\�b�h -lh0-, -lh1-, -lh4-,-lh5-,-lh6- ,-lh7-
+ * LHAファイルデコーダストリームクラス.
+ * 対応メソッド -lh0-, -lh1-, -lh4-,-lh5-,-lh6- ,-lh7-
  *
  * @author		TURNER
  * @version 	0.2
@@ -19,16 +19,16 @@ import java.io.*;
 public class LhaInputStream extends FilterInputStream
 {
 
-	private LhaEntry lha_entry;			//LHA�G���g���N���X
+	private LhaEntry lha_entry;			//LHAエントリクラス
 	private CRC16 crc = new CRC16();
 	private byte[] tmpbuf = new byte[256];
 
-	private long remaining; 			//�W�J��̃f�[�^�̂̂���̒����B
+	private long remaining; 			//展開後のデータののこりの長さ。
 
 	private boolean closed = false;
-	private LZHDecoder lzhDecoder;		//�̐S�v�̃f�R�[�_�N���X
+	private LZHDecoder lzhDecoder;		//肝心要のデコーダクラス
 
-	// �G���g���[���Ō�ɒB���Ă��邩�ǂ����̃t���O�B
+	// エントリーが最後に達しているかどうかのフラグ。
 	private boolean lha_entryEOF = false;
 
 	
@@ -43,9 +43,9 @@ public class LhaInputStream extends FilterInputStream
 	private int cmp_type;
 
 	/**
-	 * �X�g���[����close���Ă��Ȃ����`�F�b�N����.
+	 * ストリームがcloseしていないかチェックする.
 	 * 
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ�
+	 * @exception java.io.IOException IOエラーが起きたとき
 	 */
 	private void ensureOpen()
 		throws IOException
@@ -56,9 +56,9 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * �k�g�`�f�R�[�_�X�g���[���̃R���X�g���N�^.
+	 * ＬＨＡデコーダストリームのコンストラクタ.
 	 * 
-	 * @param in �k�g�`�t�@�C���t�H�[�}�b�g�̓��̓X�g���[��
+	 * @param in ＬＨＡファイルフォーマットの入力ストリーム
 	 */
 	public LhaInputStream(InputStream in)
 	{
@@ -69,19 +69,19 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * LHA�t�@�C���G���g����ǂݍ��݁A�G���g���f�[�^�̍ŏ��ɃX�g���[����z�u���܂�.
+	 * LHAファイルエントリを読み込み、エントリデータの最初にストリームを配置します.
 	 * <p>
-	 * �t�@�C���G���g���̓A�[�J�C�u���̂P�t�@�C����\���Ă��܂��B
-	 * ���̊֐����Ăяo�����Ƃɂ��A�[�J�C�u���̂P�̃f�[�^���X�g���[���Ƃ���
-	 * �ǂݍ��݂ł���悤�ɂȂ�܂��B
+	 * ファイルエントリはアーカイブ内の１ファイルを表しています。
+	 * この関数を呼び出すことによりアーカイブ内の１つのデータをストリームとして
+	 * 読み込みできるようになります。
 	 * <p>
-	 * �܂��A�P�̃G���g����EOF�ɒB���Ă�����ɃG���g���������Ă������A
-	 * ���̊֐����Ăяo���Ď��̃G���g���f�[�^�̍ŏ��ɃX�g���[����z�u�ł��܂��B
+	 * また、１つのエントリでEOFに達してもさらにエントリが続いている限り、
+	 * この関数を呼び出して次のエントリデータの最初にストリームを配置できます。
 	 * <p>
-	 * �A�[�J�C�u�̍Ō�ɒB�����Ƃ���null��Ԃ��܂��B
+	 * アーカイブの最後に達したときはnullを返します。
 	 *
-	 * @return	�t�@�C���G���g�����܂�����Ύ���LhaEntry�I�u�W�F�N�g
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ�
+	 * @return	ファイルエントリがまだあれば次のLhaEntryオブジェクト
+	 * @exception java.io.IOException IOエラーが起きたとき
 	 */
 	public synchronized LhaEntry getNextEntry() 
 		throws IOException 
@@ -121,9 +121,9 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * ���݂�LHA�G���g���[���N���[�Y���A���̃G���g���̒��O�܂ŃX�L�b�v���܂�.
+	 * 現在のLHAエントリーをクローズし、次のエントリの直前までスキップします.
 	 *
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ�
+	 * @exception java.io.IOException IOエラーが起きたとき
 	 */
 	public synchronized void closeEntry()
 		throws IOException
@@ -137,16 +137,16 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * ���݂̓��̓f�[�^�� EOF �ɒB�������ƂŌĂяo�����ꍇ�� 0 ��Ԃ��܂�,
-	 * �����łȂ��ꍇ�͏�� 1 ��Ԃ��܂�.
+	 * 現在の入力データが EOF に達したあとで呼び出した場合は 0 を返します,
+	 * そうでない場合は常に 1 を返します.
 	 * <p>
-	 * �{��InputStream��available()�֐��̓u���b�N�����ɓǂ݂��݉\��
-	 * �o�C�g����Ԃ����߂̂��̂ł��B
+	 * 本来InputStreamのavailable()関数はブロックせずに読みこみ可能な
+	 * バイト数を返すためのものです。
 	 * <p>
-	 * �ł����u���b�N�Ȃ��œǂݍ��߂���ۂ̃o�C�g���͓W�J���Ă݂Ȃ��Ƃ킩��Ȃ��̂�
-	 * �����ł͂Ƃ肠�������̂悤�Ȓl��Ԃ��܂��B(ZipInputStream�̎d�l��^���Ă��܂�)
+	 * ですがブロックなしで読み込める実際のバイト数は展開してみないとわからないので
+	 * ここではとりあえずこのような値を返します。(ZipInputStreamの仕様を真似ています)
 	 * 
-	 * @return	   ���݂̓��̓f�[�^�� EOF �ɒB���Ă��Ȃ��ꍇ�͏�� 1.
+	 * @return	   現在の入力データが EOF に達していない場合は常に 1.
 	 * @exception java.io.IOException
 	 */
 	public synchronized int available() 
@@ -161,11 +161,11 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * �ǂݍ��ݒ���LHA�G���g������P�o�C�g�ǂݍ��݂܂�.
+	 * 読み込み中のLHAエントリから１バイト読み込みます.
 	 *
-	 * @return �ǂݍ��܂ꂽ�l
-	 * 		EOF�ɒB���Ă����Ƃ���-1��Ԃ��B
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ�
+	 * @return 読み込まれた値
+	 * 		EOFに達していたときは-1を返す。
+	 * @exception java.io.IOException IOエラーが起きたとき
 	 */
 	public synchronized int read()
 		throws IOException
@@ -210,14 +210,14 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * �ǂݍ��ݒ��̃G���g������f�[�^��ǂݍ��݂܂�.
-	 * �w�肳�ꂽbyte�z���
-	 * �z��̑傫���Ԃ�܂ŉ\�Ȍ���ǂݍ��݂܂��B
+	 * 読み込み中のエントリからデータを読み込みます.
+	 * 指定されたbyte配列に
+	 * 配列の大きさぶんまで可能な限り読み込みます。
 	 *
-	 * @param b �ǂݍ��܂ꂽ�f�[�^���i�[���邽�߂�byte�^�̔z��
-	 * @return �ǂݍ��܂ꂽ�L���ȃo�C�g���B�܂��G���g����
-	 * 				EOF�ɒB���Ă����Ƃ���-1��Ԃ��B
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ� 
+	 * @param b 読み込まれたデータを格納するためのbyte型の配列
+	 * @return 読み込まれた有効なバイト数。またエントリの
+	 * 				EOFに達していたときは-1を返す。
+	 * @exception java.io.IOException IOエラーが起きたとき 
 	 */
 	public synchronized int read( byte[] b )
 		throws IOException
@@ -226,16 +226,16 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * �ǂݍ��ݒ��̃G���g������f�[�^��ǂݍ��݂܂�.
-	 * �����Ŏw�肳�ꂽ�Ԃ�܂�
-	 * �\�Ȍ���byte�̔z��ɓǂݍ��݂܂��B
+	 * 読み込み中のエントリからデータを読み込みます.
+	 * 引数で指定されたぶんまで
+	 * 可能な限りbyteの配列に読み込みます。
 	 *
-	 * @param b �ǂݍ��܂ꂽ�f�[�^���i�[���邽�߂�byte�^�̔z��
-	 * @param off �z���̓ǂݍ��݊J�n�C���f�b�N�X�B
-	 * @param len �ő�ǂݍ��݃o�C�g��
-	 * @return �ǂݍ��܂ꂽ�L���ȃo�C�g���B�܂��G���g����
-	 * 				EOF�ɒB���Ă����Ƃ���-1��Ԃ��B
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ� 
+	 * @param b 読み込まれたデータを格納するためのbyte型の配列
+	 * @param off 配列上の読み込み開始インデックス。
+	 * @param len 最大読み込みバイト数
+	 * @return 読み込まれた有効なバイト数。またエントリの
+	 * 				EOFに達していたときは-1を返す。
+	 * @exception java.io.IOException IOエラーが起きたとき 
 	 */
 	public synchronized int read(byte[] b, int off, int len)
 		throws IOException
@@ -270,12 +270,12 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * ���ݓǂݍ��ݒ��̃X�g���[���������Ŏw�肵���o�C�g�������X�L�b�v���܂�.
-	 * EOF�ɒB�����ꍇ�͂����Œ�~���܂�.
-	 * @param n �X�L�b�v���鐔
-	 * @return ���ۂɃX�L�b�v������
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ� 
-	 * @exception IllegalArgumentException	n < 0 �̂Ƃ�
+	 * 現在読み込み中のストリームを引数で指定したバイト数だけスキップします.
+	 * EOFに達した場合はそこで停止します.
+	 * @param n スキップする数
+	 * @return 実際にスキップした数
+	 * @exception java.io.IOException IOエラーが起きたとき 
+	 * @exception IllegalArgumentException	n < 0 のとき
 	 */
 	public synchronized long skip(long n) throws IOException {
 		if (n < 0) {
@@ -301,9 +301,9 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * LHAInputStream���N���[�Y���܂�.
-	 * �G���g���ł͂Ȃ��f�[�^�̌��̃X�g���[�����N���[�Y���܂�.
-	 * @exception java.io.IOException IO�G���[���N�����Ƃ�
+	 * LHAInputStreamをクローズします.
+	 * エントリではなくデータの源のストリームをクローズします.
+	 * @exception java.io.IOException IOエラーが起きたとき
 	 */
 	public synchronized void close() throws IOException {
 		in.close();
@@ -311,7 +311,7 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/*
-	 * ���̃G���g����LHA�t�@�C���w�b�_��ǂݍ��݂܂��B
+	 * 次のエントリのLHAファイルヘッダを読み込みます。
 	 */
 	private LhaEntry readHeader()
 		throws IOException
@@ -326,8 +326,8 @@ public class LhaInputStream extends FilterInputStream
 	}
 
 	/**
-	 * �V���� <code>LhaEntry</code> �I�u�W�F�N�g���t�@�C�������w�肵��
-	 * �������܂�.
+	 * 新しい <code>LhaEntry</code> オブジェクトをファイル名を指定して
+	 * 生成します.
 	 *
 	 * @param name the LHA file entry name
 	 */

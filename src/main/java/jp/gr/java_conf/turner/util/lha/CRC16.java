@@ -8,8 +8,8 @@
 package jp.gr.java_conf.turner.util.lha;
 
 /**
- * CRC16ŒvZ—pƒNƒ‰ƒX.
- * ‚±‚ÌƒNƒ‰ƒX‚Å‚Íchar‚ğunsigned short ‚Ì‘ã‚í‚è‚É—p‚¢‚Ä‚¢‚é.
+ * CRC16è¨ˆç®—ç”¨ã‚¯ãƒ©ã‚¹.
+ * ã“ã®ã‚¯ãƒ©ã‚¹ã§ã¯charã‚’unsigned short ã®ä»£ã‚ã‚Šã«ç”¨ã„ã¦ã„ã‚‹.
  * 
  * @author		TURNER
  */
@@ -23,7 +23,7 @@ public class CRC16{
 	private static final int BYTE_MAX = (1<<BYTE_BITS)-1;
 
 	/**
-	 * CRC16ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚µ‚Ü‚·.
+	 * CRC16ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—ã¾ã™.
 	 */
 	public CRC16() {
 		if( crctable == null ){
@@ -33,19 +33,19 @@ public class CRC16{
    
 
 	/**
-	 * CRC16‚Ì’l‚ğ‚PƒoƒCƒg‚Ìˆø”‚ÅXV‚µ‚Ü‚·.
-	 * @param b CRC16‚ğŒvZ‚·‚éƒf[ƒ^
+	 * CRC16ã®å€¤ã‚’ï¼‘ãƒã‚¤ãƒˆã®å¼•æ•°ã§æ›´æ–°ã—ã¾ã™.
+	 * @param b CRC16ã‚’è¨ˆç®—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 	 */
 	public void update(byte b) {
 		crc = crctable[(crc ^ (b)) & 0xFF] ^ (crc >> BYTE_BITS);
 	}
 
 	/**
-	 * CRC16‚Ì’l‚ğƒoƒCƒg‚Ì”z—ñ‚ÅXV‚µ‚Ü‚·.
+	 * CRC16ã®å€¤ã‚’ãƒã‚¤ãƒˆã®é…åˆ—ã§æ›´æ–°ã—ã¾ã™.
 	 * 
-	 * @param b CRC16‚ğŒvZ‚·‚éƒf[ƒ^‚Ì”z—ñ
-	 * @param off ƒf[ƒ^‚ÌŠJnˆÊ’u‚ğ¦‚·”z—ñã‚ÌƒCƒ“ƒfƒbƒNƒX
-	 * @param len ÀÛ‚ÉŒvZ‚·‚éƒf[ƒ^‚ÌƒoƒCƒg”
+	 * @param b CRC16ã‚’è¨ˆç®—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—
+	 * @param off ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ä½ç½®ã‚’ç¤ºã™é…åˆ—ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	 * @param len å®Ÿéš›ã«è¨ˆç®—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆæ•°
 	 */
 	public void update(byte[] b, int off, int len) {
 		int end = (off+len);
@@ -55,23 +55,23 @@ public class CRC16{
 	}
 
 	/**
-	 * CRC‚Ì’l‚ğbyte‚Ì”z—ñ‚ÅXV‚µ‚Ü‚·.
+	 * CRCã®å€¤ã‚’byteã®é…åˆ—ã§æ›´æ–°ã—ã¾ã™.
 	 * 
-	 * @param b CRC16‚ğŒvZ‚·‚ébyte‚Ì”z—ñ
+	 * @param b CRC16ã‚’è¨ˆç®—ã™ã‚‹byteã®é…åˆ—
 	 */
 	public void update(byte[] b) {
 		update( b, 0, b.length);
 	}
 
 	/**
-	 * CRC16‚Ì’l‚ğ‚O‚ÉƒŠƒZƒbƒg‚µ‚Ü‚·.
+	 * CRC16ã®å€¤ã‚’ï¼ã«ãƒªã‚»ãƒƒãƒˆã—ã¾ã™.
 	 */
 	public void reset() {
 		crc = 0;
 	}
 
 	/**
-	 * CRC16‚Ì’l‚ğæ“¾‚µ‚Ü‚·.
+	 * CRC16ã®å€¤ã‚’å–å¾—ã—ã¾ã™.
 	 */
 	public int getValue() {
 		return crc & 0x0000ffff;

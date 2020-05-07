@@ -11,40 +11,40 @@ import java.util.Date;
 import java.io.*;
 
 /**
- * ‚±‚ÌƒNƒ‰ƒX‚ÍLHA‚Ìƒtƒ@ƒCƒ‹ƒGƒ“ƒgƒŠî•ñ‚ğ•\‚µ‚Ü‚·B
+ * ã“ã®ã‚¯ãƒ©ã‚¹ã¯LHAã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¨ãƒ³ãƒˆãƒªæƒ…å ±ã‚’è¡¨ã—ã¾ã™ã€‚
  *
  */
 public class LhaEntry implements Cloneable, LhaConstants{
 
 	private static final String FSP = System.getProperty("file.separator");
 
-	private String  cmp_method = METHOD_LH5;//ˆ³k–@‚Ìí—ŞƒfƒtƒHƒ‹ƒg‚Ílh5
-	private long    cmp_size;               //ˆ³k‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	private long    org_size;               //ƒIƒŠƒWƒiƒ‹‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY
-	private long    time;                   //ÅIXVŠÔ{“ú•t
-	private byte    attrib;                 //ƒtƒ@ƒCƒ‹‚Ì‘®«iMS-DOSj
-	private int     hd_level;               //ƒwƒbƒ_‚ÌƒŒƒxƒ‹
-	private String  name;                   //ƒtƒ@ƒCƒ‹–¼
+	private String  cmp_method = METHOD_LH5;//åœ§ç¸®æ³•ã®ç¨®é¡ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯lh5
+	private long    cmp_size;               //åœ§ç¸®ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	private long    org_size;               //ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	private long    time;                   //æœ€çµ‚æ›´æ–°æ™‚é–“ï¼‹æ—¥ä»˜
+	private byte    attrib;                 //ãƒ•ã‚¡ã‚¤ãƒ«ã®å±æ€§ï¼ˆMS-DOSï¼‰
+	private int     hd_level;               //ãƒ˜ãƒƒãƒ€ã®ãƒ¬ãƒ™ãƒ«
+	private String  name;                   //ãƒ•ã‚¡ã‚¤ãƒ«å
 
-	private String  dir;                    //ƒfƒBƒŒƒNƒgƒŠ–¼
-	private String  comment;                //ƒRƒƒ“ƒgiƒŒƒxƒ‹‚PˆÈ~‚ÌŠg’£ƒwƒbƒ_j
-	private int     hd_crc;                 //ƒwƒbƒ_‚ÌCRC16
+	private String  dir;                    //ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	private String  comment;                //ã‚³ãƒ¡ãƒ³ãƒˆï¼ˆãƒ¬ãƒ™ãƒ«ï¼‘ä»¥é™ã®æ‹¡å¼µãƒ˜ãƒƒãƒ€ï¼‰
+	private int     hd_crc;                 //ãƒ˜ãƒƒãƒ€ã®CRC16
 
-	private int     crc16;                  //ƒGƒ“ƒgƒŠ–{‘Ì‚ÌCRC16
-	private byte[]  extra = null;           //Šg’£•”•ªiŠî–{ƒwƒbƒ_“àj
-	private boolean isDir;                  //ƒfƒBƒŒƒNƒgƒŠƒtƒ‰ƒO
-	private char    os_type = OSTYPE_GENERIC;//ƒA[ƒJƒCƒu‚ªì‚ç‚ê‚½OS
+	private int     crc16;                  //ã‚¨ãƒ³ãƒˆãƒªæœ¬ä½“ã®CRC16
+	private byte[]  extra = null;           //æ‹¡å¼µéƒ¨åˆ†ï¼ˆåŸºæœ¬ãƒ˜ãƒƒãƒ€å†…ï¼‰
+	private boolean isDir;                  //ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ•ãƒ©ã‚°
+	private char    os_type = OSTYPE_GENERIC;//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒä½œã‚‰ã‚ŒãŸOS
 
-	private int checksum = 0;               //ƒwƒbƒ_ƒ`ƒFƒbƒNƒTƒ€
+	private int checksum = 0;               //ãƒ˜ãƒƒãƒ€ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 
 	private static final String SJIS_ENCODING = "SJIS";
 
 	/**
-	 * w’è‚µ‚½–¼‘O‚ÅLhaEntryƒIƒuƒWƒFƒNƒg‚ğ¶¬‚µ‚Ü‚·.
+	 * æŒ‡å®šã—ãŸåå‰ã§LhaEntryã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—ã¾ã™.
 	 *
-	 * @param name ƒGƒ“ƒgƒŠ–¼(ƒtƒ@ƒCƒ‹–¼)
-	 * @exception NullPointerException ƒGƒ“ƒgƒŠ–¼‚ªnull‚Ì‚Æ‚«
-	 * @exception IllegalArgumentException ƒGƒ“ƒgƒŠ–¼‚ª’·‚·‚¬(Å’·0xFFFE)
+	 * @param name ã‚¨ãƒ³ãƒˆãƒªå(ãƒ•ã‚¡ã‚¤ãƒ«å)
+	 * @exception NullPointerException ã‚¨ãƒ³ãƒˆãƒªåãŒnullã®ã¨ã
+	 * @exception IllegalArgumentException ã‚¨ãƒ³ãƒˆãƒªåãŒé•·ã™ã(æœ€é•·0xFFFE)
 	 */
 	public LhaEntry(String name) 
 	{
@@ -58,48 +58,48 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * ‚·‚Å‚É‚ ‚éƒGƒ“ƒgƒŠ‚Æ“¯–¼‚ÌƒGƒ“ƒgƒŠ‚ğ¶¬‚µ‚Ü‚·.
-	 * @param e LhaEntryƒIƒuƒWƒFƒNƒg
+	 * ã™ã§ã«ã‚ã‚‹ã‚¨ãƒ³ãƒˆãƒªã¨åŒåã®ã‚¨ãƒ³ãƒˆãƒªã‚’ç”Ÿæˆã—ã¾ã™.
+	 * @param e LhaEntryã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	public LhaEntry(LhaEntry e) {
 		name = e.name;
 	}
 
 	/**
-	 * LhaEntry‚ğ¶¬‚µ‚Ü‚·.
+	 * LhaEntryã‚’ç”Ÿæˆã—ã¾ã™.
 	 */
 	public LhaEntry() {
 	}
 
 	/**
-	 * ƒGƒ“ƒgƒŠ–¼iƒtƒ@ƒCƒ‹–¼j‚ğ•Ô‚µ‚Ü‚·. <br>
-	 * ƒfƒBƒŒƒNƒgƒŠ‚ÍŠÜ‚İ‚Ü‚¹‚ñ.<br>
-	 * @return ƒGƒ“ƒgƒŠ–¼iƒtƒ@ƒCƒ‹–¼j
+	 * ã‚¨ãƒ³ãƒˆãƒªåï¼ˆãƒ•ã‚¡ã‚¤ãƒ«åï¼‰ã‚’è¿”ã—ã¾ã™. <br>
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯å«ã¿ã¾ã›ã‚“.<br>
+	 * @return ã‚¨ãƒ³ãƒˆãƒªåï¼ˆãƒ•ã‚¡ã‚¤ãƒ«åï¼‰
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©‚ğ•\‚·ƒtƒ‰ƒO‚ğæ“¾.
-	 * @return ƒfƒBƒŒƒNƒgƒŠ‚ğ•\‚·ƒGƒ“ƒgƒŠ‚Ì‚Æ‚«‚Ítrue.
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹ã‚’è¡¨ã™ãƒ•ãƒ©ã‚°ã‚’å–å¾—.
+	 * @return ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¡¨ã™ã‚¨ãƒ³ãƒˆãƒªã®ã¨ãã¯true.
 	 */
 	public boolean isDirectory() {
 		return isDir;
 	}
 
 	/**
-	 * ƒGƒ“ƒgƒŠ–¼iƒtƒ@ƒCƒ‹–¼j‚ğ•Ô‚µ‚Ü‚·. <br>
-	 * ƒfƒBƒŒƒNƒgƒŠ‚ÍŠÜ‚İ‚Ü‚¹‚ñ.<br>
-	 * @return ƒGƒ“ƒgƒŠ–¼iƒtƒ@ƒCƒ‹–¼j
+	 * ã‚¨ãƒ³ãƒˆãƒªåï¼ˆãƒ•ã‚¡ã‚¤ãƒ«åï¼‰ã‚’è¿”ã—ã¾ã™. <br>
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯å«ã¿ã¾ã›ã‚“.<br>
+	 * @return ã‚¨ãƒ³ãƒˆãƒªåï¼ˆãƒ•ã‚¡ã‚¤ãƒ«åï¼‰
 	 */
 	public String toString() {
 		return getName();
 	}
 
 	/**
-	 * ˆ³k‚Ìƒƒ\ƒbƒh‚ğ•Ô‚µ‚Ü‚·.("-lh0-", "-lh5-", “™)
-	 * @return ˆ³kƒƒ\ƒbƒh
+	 * åœ§ç¸®ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¿”ã—ã¾ã™.("-lh0-", "-lh5-", ç­‰)
+	 * @return åœ§ç¸®ãƒ¡ã‚½ãƒƒãƒ‰
 	 * @see #METHOD_LH0
 	 * @see #METHOD_LH1
 	 * @see #METHOD_LH2
@@ -118,8 +118,8 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 	
 	/**
-	 * ˆ³k‚Ìƒƒ\ƒbƒh‚ğƒGƒ“ƒgƒŠ‚Éİ’è‚µ‚Ü‚·.
-	 * @param method ˆ³kƒƒ\ƒbƒh
+	 * åœ§ç¸®ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚¨ãƒ³ãƒˆãƒªã«è¨­å®šã—ã¾ã™.
+	 * @param method åœ§ç¸®ãƒ¡ã‚½ãƒƒãƒ‰
 	 * @see #METHOD_LH0
 	 * @see #METHOD_LH1
 	 * @see #METHOD_LH2
@@ -138,32 +138,32 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * ˆ³kŒã‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
-	 * @return ˆ³kŒã‚ÌƒTƒCƒY
+	 * åœ§ç¸®å¾Œã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+	 * @return åœ§ç¸®å¾Œã®ã‚µã‚¤ã‚º
 	 */
 	public long getCompressedSize(){
 		return cmp_size;
 	}
 
 	/**
-	 * ˆ³kŒã‚ÌƒTƒCƒY‚ğƒGƒ“ƒgƒŠ‚Éİ’è‚µ‚Ü‚·
-	 * @param cmp_size ˆ³kŒã‚ÌƒTƒCƒY
+	 * åœ§ç¸®å¾Œã®ã‚µã‚¤ã‚ºã‚’ã‚¨ãƒ³ãƒˆãƒªã«è¨­å®šã—ã¾ã™
+	 * @param cmp_size åœ§ç¸®å¾Œã®ã‚µã‚¤ã‚º
 	 */
 	public void setCompressedSize( long cmp_size ){
 		this.cmp_size = cmp_size;
 	}
 	
 	/**
-	 * ˆ³k‘O‚Ì–{—ˆ‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
-	 * @return ƒIƒŠƒWƒiƒ‹‚ÌƒTƒCƒY
+	 * åœ§ç¸®å‰ã®æœ¬æ¥ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+	 * @return ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ã‚µã‚¤ã‚º
 	 */
 	public long getSize(){
 		return org_size;
 	}
 
 	/**
-	 * ˆ³k‘O‚Ì–{—ˆ‚ÌƒTƒCƒY‚ğƒGƒ“ƒgƒŠ‚Éİ’è‚µ‚Ü‚·
-	 * @param org_size ƒIƒŠƒWƒiƒ‹‚ÌƒTƒCƒY
+	 * åœ§ç¸®å‰ã®æœ¬æ¥ã®ã‚µã‚¤ã‚ºã‚’ã‚¨ãƒ³ãƒˆãƒªã«è¨­å®šã—ã¾ã™
+	 * @param org_size ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ã‚µã‚¤ã‚º
 	 */
 	public void setSize( long org_size ){
 		this.org_size = org_size;
@@ -171,26 +171,26 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * ÅIXV‚ğ•Ô‚µ‚Ü‚·
-	 * @return 1970 ”N 1 Œ 1 “ú 00:00:00 ‚©‚ç‚Ìƒ~ƒŠ•b‚Å•\‚µ‚½ÅIXV
+	 * æœ€çµ‚æ›´æ–°æ™‚åˆ»ã‚’è¿”ã—ã¾ã™
+	 * @return 1970 å¹´ 1 æœˆ 1 æ—¥ 00:00:00 ã‹ã‚‰ã®ãƒŸãƒªç§’ã§è¡¨ã—ãŸæœ€çµ‚æ›´æ–°æ™‚åˆ»
 	 */
 	public long getDate(){
 		return time;
 	}
 
 	/**
-	 * ÅIXV‚ğİ’è‚µ‚Ü‚·
-	 * @param time 1970 ”N 1 Œ 1 “ú 00:00:00 ‚©‚ç‚Ìƒ~ƒŠ•b‚Å•\‚µ‚½ÅIXV
+	 * æœ€çµ‚æ›´æ–°æ™‚åˆ»ã‚’è¨­å®šã—ã¾ã™
+	 * @param time 1970 å¹´ 1 æœˆ 1 æ—¥ 00:00:00 ã‹ã‚‰ã®ãƒŸãƒªç§’ã§è¡¨ã—ãŸæœ€çµ‚æ›´æ–°æ™‚åˆ»
 	 */
 	public void setDate( long time ){
 		this.time = time;
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‘®«‚ğ•Ô‚µ‚Ü‚·(MS-DOSŒİŠ·).
-	 * ŠÖ˜A€–Ú‚É‹“‚°‚½’è”‚Ìƒrƒbƒg‚²‚Æ‚Ì˜_—˜a‚ğ‚Æ‚Á‚½Œ‹‰Ê‚ª•Ô‚³‚ê‚Ü‚·.<p>
-	 * MS-DOSˆÈŠO‚Åì¬‚³‚ê‚½ƒA[ƒJƒCƒu‚Ìê‡A‚±‚ÌƒtƒB[ƒ‹ƒh‚Ì’l‚Í
-	 * ³‚µ‚­ƒtƒ@ƒCƒ‹‘®«‚ğ”½‰f‚µ‚Ä‚¢‚È‚¢‚±‚Æ‚ª‚ ‚è‚Ü‚·.<p>
+	 * ãƒ•ã‚¡ã‚¤ãƒ«å±æ€§ã‚’è¿”ã—ã¾ã™(MS-DOSäº’æ›).
+	 * é–¢é€£é …ç›®ã«æŒ™ã’ãŸå®šæ•°ã®ãƒ“ãƒƒãƒˆã”ã¨ã®è«–ç†å’Œã‚’ã¨ã£ãŸçµæœãŒè¿”ã•ã‚Œã¾ã™.<p>
+	 * MS-DOSä»¥å¤–ã§ä½œæˆã•ã‚ŒãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®å ´åˆã€ã“ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å€¤ã¯
+	 * æ­£ã—ããƒ•ã‚¡ã‚¤ãƒ«å±æ€§ã‚’åæ˜ ã—ã¦ã„ãªã„ã“ã¨ãŒã‚ã‚Šã¾ã™.<p>
 	 *
 	 * @see LhaEntry#FA_RDONLY
 	 * @see LhaEntry#FA_HIDDEN
@@ -204,11 +204,11 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * ƒtƒ@ƒCƒ‹‘®«‚ğİ’è‚µ‚Ü‚·(MS-DOSŒİŠ·).
-	 * ŠÖ˜A€–Ú‚É‹“‚°‚½’è”‚ğ”CˆÓ‚Ì‘g‚İ‡‚í‚¹‚Åƒrƒbƒg‚²‚Æ‚Ì˜_—˜a‚Æ‚èA
-	 * ‚»‚ÌŒ‹‰Ê‚ğˆø”‚É“n‚µ‚Ü‚·.<p>
+	 * ãƒ•ã‚¡ã‚¤ãƒ«å±æ€§ã‚’è¨­å®šã—ã¾ã™(MS-DOSäº’æ›).
+	 * é–¢é€£é …ç›®ã«æŒ™ã’ãŸå®šæ•°ã‚’ä»»æ„ã®çµ„ã¿åˆã‚ã›ã§ãƒ“ãƒƒãƒˆã”ã¨ã®è«–ç†å’Œã¨ã‚Šã€
+	 * ãã®çµæœã‚’å¼•æ•°ã«æ¸¡ã—ã¾ã™.<p>
 	 *
-	 * @param attrib ƒtƒ@ƒCƒ‹‘®«
+	 * @param attrib ãƒ•ã‚¡ã‚¤ãƒ«å±æ€§
 	 *
 	 * @see LhaEntry#FA_RDONLY
 	 * @see LhaEntry#FA_HIDDEN
@@ -221,57 +221,57 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 	
 	/**
-	 * LHA‚Ìƒwƒbƒ_‚ÌŒ`®‚ğæ“¾‚µ‚Ü‚·.
+	 * LHAã®ãƒ˜ãƒƒãƒ€ã®å½¢å¼ã‚’å–å¾—ã—ã¾ã™.
 	 * <p>
 	 * <table>
-	 * <tr><td>0</td><td>FLHArc‚Åg‚í‚ê‚Ä‚¢‚½ƒwƒbƒ_iƒtƒ@ƒCƒ‹–¼‚Ì’·‚³“™‚É§ŒÀ‚ ‚èj</td></tr>
-	 * <tr><td>1</td><td>F0‚ÆŒİŠ·«‚ğ•Û‚¿‚Â‚ÂŠg’£(Lharc‚Å‚àƒtƒ@ƒCƒ‹ˆê——‚¾‚¯‚ÍŒ©‚ê‚éj</td></tr>
-	 * <tr><td>2</td><td>F1,0‚Æ‚ÌŒİŠ·«‚È‚µ.</td></tr>
+	 * <tr><td>0</td><td>ï¼šLHArcã§ä½¿ã‚ã‚Œã¦ã„ãŸãƒ˜ãƒƒãƒ€ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«åã®é•·ã•ç­‰ã«åˆ¶é™ã‚ã‚Šï¼‰</td></tr>
+	 * <tr><td>1</td><td>ï¼š0ã¨äº’æ›æ€§ã‚’ä¿ã¡ã¤ã¤æ‹¡å¼µ(Lharcã§ã‚‚ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ã ã‘ã¯è¦‹ã‚Œã‚‹ï¼‰</td></tr>
+	 * <tr><td>2</td><td>ï¼š1,0ã¨ã®äº’æ›æ€§ãªã—.</td></tr>
 	 * </table>
-	 * @return LHAƒGƒ“ƒgƒŠ‚Ìƒwƒbƒ_‚ÌŒ`®
+	 * @return LHAã‚¨ãƒ³ãƒˆãƒªã®ãƒ˜ãƒƒãƒ€ã®å½¢å¼
 	 */
 	public int getHeaderLevel(){
 		return hd_level;
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠƒpƒX‚ª‚ ‚ê‚Îæ“¾‚µ‚Ü‚·.
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ãŒã‚ã‚Œã°å–å¾—ã—ã¾ã™.
 	 *
-	 * @return ƒfƒBƒŒƒNƒgƒŠƒpƒX
+	 * @return ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹
 	 */
 	public String getDir(){
 		return dir;
 	}
 
 	/**
-	 * ƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğİ’è‚µ‚Ü‚·.
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’è¨­å®šã—ã¾ã™.
 	 *
-	 * @param str ƒfƒBƒŒƒNƒgƒŠƒpƒX
+	 * @param str ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹
 	 */
 	public void setDir( String str ){
 		dir = str;
 	}
 
 	/**
-	 * ƒwƒbƒ_“à‚ÌƒRƒƒ“ƒg‚ğæ“¾‚µ‚Ü‚·.
+	 * ãƒ˜ãƒƒãƒ€å†…ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’å–å¾—ã—ã¾ã™.
 	 *
-	 * @return ƒRƒƒ“ƒg
+	 * @return ã‚³ãƒ¡ãƒ³ãƒˆ
 	 */
 	public String getComment(){
 		return comment;
 	}
 
 	/**
-	 * ƒwƒbƒ_“à‚ÉƒRƒƒ“ƒg‚ğİ’è‚µ‚Ü‚·.
+	 * ãƒ˜ãƒƒãƒ€å†…ã«ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¨­å®šã—ã¾ã™.
 	 *
-	 * @param str ƒRƒƒ“ƒg
+	 * @param str ã‚³ãƒ¡ãƒ³ãƒˆ
 	 */
 	public void setComment( String str ){
 		comment = str;
 	}
 
 	/**
-	 * CRC‚Ì’l‚ğæ“¾‚µ‚Ü‚·.
+	 * CRCã®å€¤ã‚’å–å¾—ã—ã¾ã™.
 	 *
 	 * @return crc16
 	 */
@@ -280,7 +280,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * CRC‚Ì’l‚ğİ’è‚µ‚Ü‚·.
+	 * CRCã®å€¤ã‚’è¨­å®šã—ã¾ã™.
 	 *
 	 * @param crc crc16
 	 */
@@ -289,9 +289,9 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * Šg’£î•ñ‚ª‚ ‚ê‚Îæ“¾‚µ‚Ü‚·.
+	 * æ‹¡å¼µæƒ…å ±ãŒã‚ã‚Œã°å–å¾—ã—ã¾ã™.
 	 *
-	 * @return Šg’£î•ñ‚Ü‚½‚Ínull
+	 * @return æ‹¡å¼µæƒ…å ±ã¾ãŸã¯null
 	 */
 	public byte[] getExtra(){
 		if( extra == null ){
@@ -303,20 +303,20 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * Šg’£î•ñ‚ğİ’è‚µ‚Ü‚·.
+	 * æ‹¡å¼µæƒ…å ±ã‚’è¨­å®šã—ã¾ã™.
 	 *
-	 * @param extra Šg’£î•ñ
+	 * @param extra æ‹¡å¼µæƒ…å ±
 	 */
 	public void setExtra( byte[] extra ){
 		this.extra = extra;
 	}
 	
 	/**
-	 * OSî•ñ‚ğæ“¾‚µ‚Ü‚·.
+	 * OSæƒ…å ±ã‚’å–å¾—ã—ã¾ã™.
 	 *
-	 * ŠÖ˜A€–Ú‚Ì’è”ˆÈŠO‚Ì’l‚àİ’è‚³‚ê‚Ä‚¢‚é‰Â”\«‚Í—L‚è‚Ü‚·.
+	 * é–¢é€£é …ç›®ã®å®šæ•°ä»¥å¤–ã®å€¤ã‚‚è¨­å®šã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ã¯æœ‰ã‚Šã¾ã™.
 	 *
-	 * @return OSî•ñ
+	 * @return OSæƒ…å ±
 	 *
 	 * @see LhaEntry#OSTYPE_MSDOS
 	 * @see LhaEntry#OSTYPE_OS2  
@@ -340,9 +340,9 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 	
 	/**
-	 * OSî•ñ‚ğİ’è‚µ‚Ü‚·.
+	 * OSæƒ…å ±ã‚’è¨­å®šã—ã¾ã™.
 	 *
-	 * @param os OSî•ñ
+	 * @param os OSæƒ…å ±
 	 * @see LhaEntry#OSTYPE_MSDOS
 	 * @see LhaEntry#OSTYPE_OS2  
 	 * @see LhaEntry#OSTYPE_OS9  
@@ -387,41 +387,41 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * ƒnƒbƒVƒ…’l‚ğ•Ô‚µ‚Ü‚·.
-	 * @return ‚±‚ÌƒGƒ“ƒgƒŠ‚ÌƒnƒbƒVƒ…’l
+	 * ãƒãƒƒã‚·ãƒ¥å€¤ã‚’è¿”ã—ã¾ã™.
+	 * @return ã“ã®ã‚¨ãƒ³ãƒˆãƒªã®ãƒãƒƒã‚·ãƒ¥å€¤
 	 */
 	public int hashCode() {
 		return name.hashCode();
 	}
 
 	/**
-	 * ƒXƒgƒŠ[ƒ€‚©‚çƒwƒbƒ_‚ğÀÛ‚É“Ç‚İ‚İ‚Ü‚·.
+	 * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ãƒ˜ãƒƒãƒ€ã‚’å®Ÿéš›ã«èª­ã¿è¾¼ã¿ã¾ã™.
 	 */
 	protected boolean loadFrom( InputStream is )
 		throws IOException
 	{
-		//Å‰‚Ì‚Q‚PƒoƒCƒgiƒwƒbƒ_‚ÌƒŒƒxƒ‹•”•ª‚Ü‚Åj‚ğ“Ç‚İ‚ŞB
+		//æœ€åˆã®ï¼’ï¼‘ãƒã‚¤ãƒˆï¼ˆãƒ˜ãƒƒãƒ€ã®ãƒ¬ãƒ™ãƒ«éƒ¨åˆ†ã¾ã§ï¼‰ã‚’èª­ã¿è¾¼ã‚€ã€‚
 		byte work[] = new byte[21];
 		int ret;
 		
 	   	ret = readBytes( is, work, 0, 1 );
 		if( ret <= 0 || work[0] == 0x00 ){
-				//ƒtƒ@ƒCƒ‹‚ÌI‚í‚è‚ÅLHAƒGƒ“ƒgƒŠ‚àI‚í‚è
+				//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ã‚ã‚Šã§LHAã‚¨ãƒ³ãƒˆãƒªã‚‚çµ‚ã‚ã‚Š
 				return false;
 		}
 
 		checksum = 0;
 		ret = readBytes( is, work, 1, work.length-1 );
 		if( ret < work.length-1 ){
-			//ƒtƒ@ƒCƒ‹‚Í‚à‚¤s‚«‚Ä‚¢‚é‚Ì‚É‚±‚±‚É—ˆ‚Ä‚µ‚Ü‚Á‚½B
+			//ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚‚ã†å°½ãã¦ã„ã‚‹ã®ã«ã“ã“ã«æ¥ã¦ã—ã¾ã£ãŸã€‚
 			throw new EOFException("Unexpected EOF. LHA Header was broken.");
 		}
 
-		int hd_size;	//ƒwƒbƒ_‚ÌƒTƒCƒY(ƒŒƒxƒ‹‚OA‚P‚Å‚ÍŠî–{ƒwƒbƒ_‚Ì‚İ‚Ì‘å‚«‚³j
-						//ƒŒƒxƒ‹‚Q‚Å‚Í‘Sƒwƒbƒ_‚Ì‘å‚«‚³
-		int hd_sum; 	//ƒwƒbƒ_‚Ìƒ`ƒFƒbƒNƒTƒ€
-		int fname_len;	//ƒtƒ@ƒCƒ‹–¼‚Ì’·‚³
-		int extlen = 0; //Šg’£ƒwƒbƒ_‚P‚Â‚Ì‘å‚«‚³
+		int hd_size;	//ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚º(ãƒ¬ãƒ™ãƒ«ï¼ã€ï¼‘ã§ã¯åŸºæœ¬ãƒ˜ãƒƒãƒ€ã®ã¿ã®å¤§ãã•ï¼‰
+						//ãƒ¬ãƒ™ãƒ«ï¼’ã§ã¯å…¨ãƒ˜ãƒƒãƒ€ã®å¤§ãã•
+		int hd_sum; 	//ãƒ˜ãƒƒãƒ€ã®ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
+		int fname_len;	//ãƒ•ã‚¡ã‚¤ãƒ«åã®é•·ã•
+		int extlen = 0; //æ‹¡å¼µãƒ˜ãƒƒãƒ€ï¼‘ã¤ã®å¤§ãã•
 
 		hd_level = work[20];
 		switch( hd_level ){
@@ -435,11 +435,11 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			time = dosToJavaTime( get32( work, 15 ) );
 			attrib = (byte)(0xFF&work[19]);
 			
-			if( (fname_len = is.read()) == -1 ){	//ƒtƒ@ƒCƒ‹–¼‚Ì’·‚³
+			if( (fname_len = is.read()) == -1 ){	//ãƒ•ã‚¡ã‚¤ãƒ«åã®é•·ã•
 				throw new EOFException("Unexpected EOF. LHA Header was broken.");
 			}
 			work = new byte[fname_len+2];
-			if( readBytes( is, work, 0, work.length ) < work.length ){	//ƒtƒ@ƒCƒ‹–¼{CRC
+			if( readBytes( is, work, 0, work.length ) < work.length ){	//ãƒ•ã‚¡ã‚¤ãƒ«åï¼‹CRC
 				throw new EOFException("Unexpected EOF. LHA Header was broken.");
 			}
 			{
@@ -477,7 +477,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			cmp_size = get32( work, 7 );
 			org_size = get32( work, 11 );
 			time = dosToJavaTime( get32( work, 15 ) );
-			attrib = (byte)(0xFF&work[19]);		   //level1ƒwƒbƒ_‚Å‚Í–{—ˆ‚±‚±‚Í0x20ŒÅ’è
+			attrib = (byte)(0xFF&work[19]);		   //level1ãƒ˜ãƒƒãƒ€ã§ã¯æœ¬æ¥ã“ã“ã¯0x20å›ºå®š
 
 			fname_len = read8( is );
 			name = readString( is, fname_len );
@@ -488,7 +488,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			if( readBytes( is, extra, 0, extra.length ) < extra.length ){
 				throw new EOFException("Unexpected EOF. LHA Header was broken.");
 			}
-			extlen = read16( is );	   //Å‰‚ÌŠg’£ƒwƒbƒ_‚Ì’·‚³B
+			extlen = read16( is );	   //æœ€åˆã®æ‹¡å¼µãƒ˜ãƒƒãƒ€ã®é•·ã•ã€‚
 			if( (0xFF & checksum) != hd_sum ){
 				throw new LhaException("Header checksum error. Header was broken.");
 			}
@@ -503,7 +503,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			cmp_size = get32( work, 7 );
 			org_size = get32( work, 11 );
 			time = get32( work, 15 )*1000;
-			attrib = (byte)(0xFF&work[19]);			//level2ƒwƒbƒ_‚Å‚Í–{—ˆ‚±‚±‚Í0x20ŒÅ’è
+			attrib = (byte)(0xFF&work[19]);			//level2ãƒ˜ãƒƒãƒ€ã§ã¯æœ¬æ¥ã“ã“ã¯0x20å›ºå®š
 			int wk_len = work.length;
 			crc16 = read16( is ); wk_len += 2;
 			os_type = (char)read8( is ); wk_len ++;
@@ -521,7 +521,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 	}
 
 	/**
-	 * ƒXƒgƒŠ[ƒ€‚©‚çŠg’£ƒwƒbƒ_‚ğ“Ç‚İ‚İ‚Ü‚·.
+	 * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰æ‹¡å¼µãƒ˜ãƒƒãƒ€ã‚’èª­ã¿è¾¼ã¿ã¾ã™.
 	 */
 	private int readExtHeader( InputStream is, int len )
 		throws IOException
@@ -532,7 +532,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			throw new EOFException("Unexpected EOF. LHA Header was broken.");
 		}
 		switch( (0xFF & b[0]) ){
-		case 0x00://‹¤’Ê
+		case 0x00://å…±é€š
 			hd_crc = get16( b, 1 );
 			if( len > 3 ){
 				extra = new byte[len-3];
@@ -540,10 +540,10 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			}
 			System.out.println( "read hd_crc:" + hd_crc );
 			break;
-		case 0x01://ƒtƒ@ƒCƒ‹–¼
+		case 0x01://ãƒ•ã‚¡ã‚¤ãƒ«å
 			name = newString( b, 1, b.length - 1, SJIS_ENCODING );
 			break;
-		case 0x02://ƒfƒBƒŒƒNƒgƒŠ–¼
+		case 0x02://ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
 			//String ssp = System.getProperty("file.separator");
 			byte sp = (byte) ( 0xFF & FSP.charAt(0) );
 			for( int i=1; i<b.length; i++ ){
@@ -553,29 +553,29 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			}
 			dir = newString( b, 1, b.length - 1, SJIS_ENCODING );
 			break;
-		case 0x3f://ƒRƒƒ“ƒg
+		case 0x3f://ã‚³ãƒ¡ãƒ³ãƒˆ
 			comment = newString( b, 1, b.length - 1, SJIS_ENCODING );
 			break;
 		/*
-		 * ˆÈ‰º‚n‚rˆË‘¶Šg’£ƒwƒbƒ_i–¢À‘•j
+		 * ä»¥ä¸‹ï¼¯ï¼³ä¾å­˜æ‹¡å¼µãƒ˜ãƒƒãƒ€ï¼ˆæœªå®Ÿè£…ï¼‰
 		 */
-		case 0x40://MS-DOS‘®«
+		case 0x40://MS-DOSå±æ€§
 			attrib = (byte)(0xFF&b[1]);
 			break;
-		case 0x50://UNIX ‹–‰Â‘®«
-			//i–¢À‘•j
+		case 0x50://UNIX è¨±å¯å±æ€§
+			//ï¼ˆæœªå®Ÿè£…ï¼‰
 			break;
 		case 0x51://UNIX GID/UID
-			//i–¢À‘•j
+			//ï¼ˆæœªå®Ÿè£…ï¼‰
 			break;
-		case 0x52://UNIX ƒOƒ‹[ƒv–¼
-			//i–¢À‘•j
+		case 0x52://UNIX ã‚°ãƒ«ãƒ¼ãƒ—å
+			//ï¼ˆæœªå®Ÿè£…ï¼‰
 			break;
-		case 0x53://UNIX ƒ†[ƒU[–¼
-			//i–¢À‘•j
+		case 0x53://UNIX ãƒ¦ãƒ¼ã‚¶ãƒ¼å
+			//ï¼ˆæœªå®Ÿè£…ï¼‰
 			break;
-		case 0x54://UNIX ÅIXV“ú
-			//i–¢À‘•j
+		case 0x54://UNIX æœ€çµ‚æ›´æ–°æ—¥æ™‚
+			//ï¼ˆæœªå®Ÿè£…ï¼‰
 			break;
 		}
 		return read16( is );
@@ -583,23 +583,23 @@ public class LhaEntry implements Cloneable, LhaConstants{
 
 
 	/**
-	 * ƒXƒgƒŠ[ƒ€‚Öƒwƒbƒ_‚ğ‘‚«‚İ‚Ü‚·.
+	 * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã¸ãƒ˜ãƒƒãƒ€ã‚’æ›¸ãè¾¼ã¿ã¾ã™.
 	 */
 	protected void saveTo( OutputStream os )
 		throws IOException
 	{
-		//*** level2 ƒwƒbƒ_ **********
+		//*** level2 ãƒ˜ãƒƒãƒ€ **********
 
-		// 0 ‘Sƒwƒbƒ_‚Ì‘å‚«‚³  2  
-		// 2 ˆ³k–@‚Ìí—Ş  5  
-		// 7 ˆ³kŒã‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY  4  
-		//11 Œ³‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY  4  
-		//15 ƒtƒ@ƒCƒ‹‚ÌÅIXV“ú  4  
-		//19 —\–ñÏ‚İi0x20 ŒÅ’èj  1  
-		//20 ƒwƒbƒ_‚ÌƒŒƒxƒ‹ (0x02)  1  
-		//21 ƒtƒ@ƒCƒ‹‚Ì CRC-16  2  
-		//23 ‘ŒÉ‚ğì¬‚µ‚½ OS ‚Ì¯•Êq  1  
-		//24 Å‰‚ÌŠg’£ƒwƒbƒ_‚ÌƒTƒCƒY  2  
+		// 0 å…¨ãƒ˜ãƒƒãƒ€ã®å¤§ãã•  2  
+		// 2 åœ§ç¸®æ³•ã®ç¨®é¡  5  
+		// 7 åœ§ç¸®å¾Œã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º  4  
+		//11 å…ƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º  4  
+		//15 ãƒ•ã‚¡ã‚¤ãƒ«ã®æœ€çµ‚æ›´æ–°æ—¥æ™‚  4  
+		//19 äºˆç´„æ¸ˆã¿ï¼ˆ0x20 å›ºå®šï¼‰  1  
+		//20 ãƒ˜ãƒƒãƒ€ã®ãƒ¬ãƒ™ãƒ« (0x02)  1  
+		//21 ãƒ•ã‚¡ã‚¤ãƒ«ã® CRC-16  2  
+		//23 æ›¸åº«ã‚’ä½œæˆã—ãŸ OS ã®è­˜åˆ¥å­  1  
+		//24 æœ€åˆã®æ‹¡å¼µãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚º  2  
 		//26
 		int work_len = 26;
 		byte[] b_name;
@@ -640,7 +640,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 		byte[] work = new byte[work_len];
 		set16( work_len, work, 0 );
 		System.out.println( "work_len:"+ work_len );
-		getBytes( cmp_method, work, 2, 5 );//ˆ³kƒƒ\ƒbƒh
+		getBytes( cmp_method, work, 2, 5 );//åœ§ç¸®ãƒ¡ã‚½ãƒƒãƒ‰
 		set32( cmp_size, work, 7 );
 		System.out.println( "writeOrgSize:" + org_size );
 		set32( org_size, work, 11 );
@@ -650,7 +650,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 		set16( crc16, work, 21 );
 		work[23] = (byte)os_type;//generic
 
-		//Šg’£ƒwƒbƒ_E‹¤’Ê	
+		//æ‹¡å¼µãƒ˜ãƒƒãƒ€ãƒ»å…±é€š	
 		if( extra != null ){
 			set16( 1+2+extra.length+2, work, 24 );
 		}else{
@@ -659,20 +659,20 @@ public class LhaEntry implements Cloneable, LhaConstants{
 		int ext_pt = 26;
 		work[ext_pt++] = 0x00;
 		int hd_crc16_pt = ext_pt;
-		set16( 0, work, ext_pt );ext_pt += 2;//ƒwƒbƒ_—pcrc16(‰¼)
+		set16( 0, work, ext_pt );ext_pt += 2;//ãƒ˜ãƒƒãƒ€ç”¨crc16(ä»®)
 		if( extra != null ){
 			System.arraycopy( extra, 0, work, ext_pt, extra.length );
 			ext_pt += extra.length;
 		}
 
-		//Šg’£ƒwƒbƒ_ ƒtƒ@ƒCƒ‹–¼
+		//æ‹¡å¼µãƒ˜ãƒƒãƒ€ ãƒ•ã‚¡ã‚¤ãƒ«å
 		set16( 1+b_name.length+2, work, ext_pt );ext_pt += 2;
 		work[ext_pt++] = 0x01;
 		System.out.println( "ext_pt:" +ext_pt + " b_name:" + b_name.length );
 		System.arraycopy( b_name, 0, work, ext_pt, b_name.length );
 		ext_pt+=b_name.length;
 
-		//Šg’£ƒwƒbƒ_ ƒfƒBƒŒƒNƒgƒŠ–¼
+		//æ‹¡å¼µãƒ˜ãƒƒãƒ€ ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
 		if( b_dir != null ){
 			set16( 1+b_dir.length+2, work, ext_pt );ext_pt += 2;
 			work[ext_pt++] = 0x02;
@@ -680,7 +680,7 @@ public class LhaEntry implements Cloneable, LhaConstants{
 			ext_pt+=b_dir.length;
 		}
 
-		//Šg’£ƒwƒbƒ_ ƒRƒƒ“ƒg
+		//æ‹¡å¼µãƒ˜ãƒƒãƒ€ ã‚³ãƒ¡ãƒ³ãƒˆ
 		if( b_comment != null ){
 			set16( 1+b_comment.length+2, work, ext_pt );ext_pt += 2;
 			work[ext_pt++] = 0x3F;

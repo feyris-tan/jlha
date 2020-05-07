@@ -9,13 +9,13 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * ƒXƒ‰ƒCƒh«‘ˆê’vˆÊ’uƒfƒR[ƒh—pŒÅ’èƒnƒtƒ}ƒ“«‘.
- * lh1—pŒÅ’è«‘.
+ * ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ä¸€è‡´ä½ç½®ãƒ‡ã‚³ãƒ¼ãƒ‰ç”¨å›ºå®šãƒãƒ•ãƒãƒ³è¾æ›¸.
+ * lh1ç”¨å›ºå®šè¾æ›¸.
  */
 class ReadyMadeHuffmanP extends StaticHuffman
 {
 	/**
-	 * ŒÅ’èƒnƒtƒ}ƒ“«‘ƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * å›ºå®šãƒãƒ•ãƒãƒ³è¾æ›¸ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 */
 	protected ReadyMadeHuffmanP( int size ){
 		super( size );
@@ -36,7 +36,7 @@ class ReadyMadeHuffmanP extends StaticHuffman
 	}
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh‚Ì•„†’·‚ğŒÅ’è’l‚Å‰Šú‰»‚·‚é.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®ç¬¦å·é•·ã‚’å›ºå®šå€¤ã§åˆæœŸåŒ–ã™ã‚‹.
 	 *
 	 */
     protected void initTableLen()
@@ -65,9 +65,9 @@ class ReadyMadeHuffmanP extends StaticHuffman
 	static final short[] ready_made_tbl = {3, 0x01, 0x04, 0x0c, 0x18, 0x30, 0};
 
 	/**
-	 * ƒcƒŠ[‚ğ‚½‚Ç‚Á‚ÄƒfƒR[ƒh‚µAƒcƒŠ[‚ğXV‚·‚é.
+	 * ãƒ„ãƒªãƒ¼ã‚’ãŸã©ã£ã¦ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ã€ãƒ„ãƒªãƒ¼ã‚’æ›´æ–°ã™ã‚‹.
 	 *
-	 * @param cutter ƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param cutter ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	public int decode( BitCutter cutter )
 		throws IOException

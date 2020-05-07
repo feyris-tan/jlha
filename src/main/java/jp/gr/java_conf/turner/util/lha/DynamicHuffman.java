@@ -16,18 +16,18 @@ abstract class DynamicHuffman implements ItfHuffman
 	protected int n_max;
 	
 	/**
-	 * “®“Iƒnƒtƒ}ƒ“ƒR[ƒh•œ†ƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @n_max	‘ÎÛ‚Æ‚·‚éƒR[ƒh‚Ì”i”ÍˆÍj
+	 * å‹•çš„ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰å¾©å·ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @n_max	å¯¾è±¡ã¨ã™ã‚‹ã‚³ãƒ¼ãƒ‰ã®æ•°ï¼ˆç¯„å›²ï¼‰
 	 */
 	DynamicHuffman( int n_max )
 	{
 		this.n_max = n_max;
-		//Leaf‚Æ’†ŠÔƒm[ƒh‚Ì—¼•û‚ğ‚ ‚í‚¹‚½”‚Ì”z—ñ
+		//Leafã¨ä¸­é–“ãƒãƒ¼ãƒ‰ã®ä¸¡æ–¹ã‚’ã‚ã‚ã›ãŸæ•°ã®é…åˆ—
 		nodes = new TreeNode[ (n_max * 2) - 1];
 	}
 	
 	/**
-	 * ƒnƒtƒ}ƒ“«‘‚ğƒfƒR[ƒh‚µAƒcƒŠ[‚ğXV‚·‚éB
+	 * ãƒãƒ•ãƒãƒ³è¾æ›¸ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ã€ãƒ„ãƒªãƒ¼ã‚’æ›´æ–°ã™ã‚‹ã€‚
 	 */
 	public int decode( BitCutter cutter )
 	    throws IOException
@@ -49,7 +49,7 @@ abstract class DynamicHuffman implements ItfHuffman
 	}
 
 	/**
-	 * ƒfƒoƒbƒO—p
+	 * ãƒ‡ãƒãƒƒã‚°ç”¨
 	 */
 	public void printArray()
 	{
@@ -68,7 +68,7 @@ abstract class DynamicHuffman implements ItfHuffman
 	}
 
 	/**
-	 * ‚ ‚éƒm[ƒh‚Ì•p“x‚ğ‚P‰Á‚¦‚ÄA‚»‚Ì”z‰º‚ÌƒTƒuƒcƒŠ[“K“–‚ÈV‚µ‚¢ˆÊ’u‚É“ü‚ê‘Ö‚¦‚éB
+	 * ã‚ã‚‹ãƒãƒ¼ãƒ‰ã®é »åº¦ã‚’ï¼‘åŠ ãˆã¦ã€ãã®é…ä¸‹ã®ã‚µãƒ–ãƒ„ãƒªãƒ¼é©å½“ãªæ–°ã—ã„ä½ç½®ã«å…¥ã‚Œæ›¿ãˆã‚‹ã€‚
 	 */
 	protected TreeNode swap_inc( TreeNode p )
 	{
@@ -122,14 +122,14 @@ abstract class DynamicHuffman implements ItfHuffman
 	}
 
 	/**
-	 * •p“xî•ñ‚ğ‚¨‚¨‚æ‚»”¼•ª‚É‚µ‚ÄƒcƒŠ[‚ğÄ\’z‚·‚éŠÖ”B
+	 * é »åº¦æƒ…å ±ã‚’ãŠãŠã‚ˆãåŠåˆ†ã«ã—ã¦ãƒ„ãƒªãƒ¼ã‚’å†æ§‹ç¯‰ã™ã‚‹é–¢æ•°ã€‚
 	 */
 	protected void reconst()
 	{
 		int i;
 		Leaf[] leafs = new Leaf[(nodes.length+1)/2];
 
-		//ƒcƒŠ[‚Ì—t‚¾‚¯‚æ‚è‚í‚¯‚Ä•p“x‚ğ¬‚³‚­‚µ‚Ä‚¨‚­B
+		//ãƒ„ãƒªãƒ¼ã®è‘‰ã ã‘ã‚ˆã‚Šã‚ã‘ã¦é »åº¦ã‚’å°ã•ãã—ã¦ãŠãã€‚
 		int leaf_index;
 		for( i=0, leaf_index = 0; i < nodes.length; i++ ){
 			if( nodes[i] instanceof Leaf ){
@@ -141,7 +141,7 @@ abstract class DynamicHuffman implements ItfHuffman
 		}
 		
 		
-		//—t‚Ìƒf[ƒ^‚©‚çƒcƒŠ[‚ğÄ\’z‚·‚éB
+		//è‘‰ã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ„ãƒªãƒ¼ã‚’å†æ§‹ç¯‰ã™ã‚‹ã€‚
 		Branch branch_wk;
 		TreeNode child_0, child_1;
 		leaf_index = leafs.length -1;
@@ -180,11 +180,11 @@ abstract class DynamicHuffman implements ItfHuffman
 	}
 
 	/**
-	 * “®“Iƒnƒtƒ}ƒ“ƒcƒŠ[‚ğƒAƒbƒvƒf[ƒg‚·‚é.
-	 * ‚³‚ç‚É•p“xƒf[ƒ^‚Ì‡Œviƒ‹[ƒg‚Ìƒm[ƒh‚Ì•p“xj‚ª
-	 * 0x8000‚ğ‚±‚¦‚½‚ç•p“xî•ñ‚ğ‚¨‚¨‚æ‚»”¼•ª‚É‚µ‚Ä
-	 * ƒcƒŠ[‚ğÄ\’z‚·‚éB
-	 * @param p •p“x‚ğ‚P‘‚â‚·ƒcƒŠ[‚Ì—t
+	 * å‹•çš„ãƒãƒ•ãƒãƒ³ãƒ„ãƒªãƒ¼ã‚’ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã™ã‚‹.
+	 * ã•ã‚‰ã«é »åº¦ãƒ‡ãƒ¼ã‚¿ã®åˆè¨ˆï¼ˆãƒ«ãƒ¼ãƒˆã®ãƒãƒ¼ãƒ‰ã®é »åº¦ï¼‰ãŒ
+	 * 0x8000ã‚’ã“ãˆãŸã‚‰é »åº¦æƒ…å ±ã‚’ãŠãŠã‚ˆãåŠåˆ†ã«ã—ã¦
+	 * ãƒ„ãƒªãƒ¼ã‚’å†æ§‹ç¯‰ã™ã‚‹ã€‚
+	 * @param p é »åº¦ã‚’ï¼‘å¢—ã‚„ã™ãƒ„ãƒªãƒ¼ã®è‘‰
 	 */
 	protected void update( Leaf p )
 	{

@@ -10,7 +10,7 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * ”CˆÓ‚Ìƒrƒbƒg”‚Ìƒf[ƒ^‚ğØ‚èo‚¹‚é“ü—ÍƒXƒgƒŠ[ƒ€
+ * ä»»æ„ã®ãƒ“ãƒƒãƒˆæ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’åˆ‡ã‚Šå‡ºã›ã‚‹å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
  *
  * @author		TURNER
  */
@@ -36,9 +36,9 @@ class BitCutter extends InputStream{
 	}
 	
 	/**
-	 *  ƒoƒCƒgƒXƒgƒŠ[ƒ€‚©‚ç”CˆÓ‚Ìƒrƒbƒg”ƒXƒLƒbƒv‚·‚é.
+	 *  ãƒã‚¤ãƒˆã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ä»»æ„ã®ãƒ“ãƒƒãƒˆæ•°ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹.
 	 * 
-	 * @arg	n		“Ç‚İ”ò‚Î‚·ƒf[ƒ^‚Ìƒrƒbƒg”
+	 * @arg	n		èª­ã¿é£›ã°ã™ãƒ‡ãƒ¼ã‚¿ã®ãƒ“ãƒƒãƒˆæ•°
 	 * @author		TURNER
 	 */
 	protected void skipBits( int n )
@@ -73,9 +73,9 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 *  ‚PƒoƒCƒg‚É–‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ğÌ‚Ä‚Ä‚³‚ç‚É”CˆÓ‚ÌƒoƒCƒg”ƒXƒLƒbƒv‚·‚é.
+	 *  ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’æ¨ã¦ã¦ã•ã‚‰ã«ä»»æ„ã®ãƒã‚¤ãƒˆæ•°ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹.
 	 * 
-	 * @arg	bytes	“Ç‚İ”ò‚Î‚·ƒoƒCƒg”
+	 * @arg	bytes	èª­ã¿é£›ã°ã™ãƒã‚¤ãƒˆæ•°
 	 * @author		TURNER
 	 */
 	public long skip( long bytes )
@@ -109,9 +109,9 @@ class BitCutter extends InputStream{
 	
 
 	/**
-	 *  ‚PƒoƒCƒg‚É–‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ğÌ‚Ä‚½‚Ì‚¿A‚PƒoƒCƒg“Ç‚İ‚Ş.
+	 *  ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’æ¨ã¦ãŸã®ã¡ã€ï¼‘ãƒã‚¤ãƒˆèª­ã¿è¾¼ã‚€.
 	 * 
-	 * @return	“Ç‚İ‚ñ‚¾ƒf[ƒ^iƒtƒ@ƒCƒ‹‚ÌI‚í‚è‚É’B‚µ‚Ä‚¢‚ê‚Î-1)
+	 * @return	èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ã‚ã‚Šã«é”ã—ã¦ã„ã‚Œã°-1)
 	 * @author		TURNER
 	 */
 	public int read()
@@ -127,9 +127,9 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 *  ‚PƒoƒCƒg‚É–‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ğÌ‚Ä‚½‚Ì‚¿A•¡”ƒoƒCƒg“Ç‚İ‚Ş.
+	 *  ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’æ¨ã¦ãŸã®ã¡ã€è¤‡æ•°ãƒã‚¤ãƒˆèª­ã¿è¾¼ã‚€.
 	 * 
-	 * @return	“Ç‚İ‚ß‚½ƒf[ƒ^‚ÌƒoƒCƒg”
+	 * @return	èª­ã¿è¾¼ã‚ãŸãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆæ•°
 	 * @author		TURNER
 	 */
 	public int read( byte[] b, int off, int len )
@@ -165,9 +165,9 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 *  ‚PƒoƒCƒg‚É–‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ğÌ‚Ä‚½‚Ì‚¿A•¡”ƒoƒCƒg“Ç‚İ‚Ş.
+	 *  ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’æ¨ã¦ãŸã®ã¡ã€è¤‡æ•°ãƒã‚¤ãƒˆèª­ã¿è¾¼ã‚€.
 	 * 
-	 * @return	“Ç‚İ‚ß‚½ƒf[ƒ^‚ÌƒoƒCƒg”
+	 * @return	èª­ã¿è¾¼ã‚ãŸãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆæ•°
 	 * @author		TURNER
 	 */
 	public int read( byte[] b )
@@ -177,7 +177,7 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 *  ƒoƒbƒtƒ@‚Éc‚Á‚Ä‚¢‚é‚PƒoƒCƒg‚É–‚½‚È‚¢”¼’[‚Èƒrƒbƒg‚ğÌ‚Ä‚é.
+	 *  ãƒãƒƒãƒ•ã‚¡ã«æ®‹ã£ã¦ã„ã‚‹ï¼‘ãƒã‚¤ãƒˆã«æº€ãŸãªã„åŠç«¯ãªãƒ“ãƒƒãƒˆã‚’æ¨ã¦ã‚‹.
 	 * 
 	 * @author		TURNER
 	 */
@@ -187,10 +187,10 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 *  ƒXƒgƒŠ[ƒ€‚©‚ç”CˆÓ‚Ìƒrƒbƒg”‚Ìƒf[ƒ^‚ğƒ|ƒCƒ“ƒ^‚Íi‚ß‚¸ƒRƒs[‚·‚é.
+	 *  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ä»»æ„ã®ãƒ“ãƒƒãƒˆæ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒ³ã‚¿ã¯é€²ã‚ãšã‚³ãƒ”ãƒ¼ã™ã‚‹.
 	 * 
-	 * @arg	n		ƒRƒs[‚·‚éƒf[ƒ^‚Ìƒrƒbƒg”(Å‘å=CUT_MAX)
-	 * @return		ƒRƒs[‚µ‚½’l
+	 * @arg	n		ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒ“ãƒƒãƒˆæ•°(æœ€å¤§=CUT_MAX)
+	 * @return		ã‚³ãƒ”ãƒ¼ã—ãŸå€¤
 	 * @author		TURNER
 	 */
 	protected int copyBits( int n )
@@ -214,10 +214,10 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 *  ƒoƒCƒgƒXƒgƒŠ[ƒ€‚©‚ç”CˆÓ‚Ìƒrƒbƒg”‚Ìƒf[ƒ^‚ğØ‚èo‚·.
+	 *  ãƒã‚¤ãƒˆã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ä»»æ„ã®ãƒ“ãƒƒãƒˆæ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’åˆ‡ã‚Šå‡ºã™.
 	 * 
-	 * @arg	n		æ‚èo‚·ƒf[ƒ^‚Ìƒrƒbƒg”(Å‘å=CUT_MAX)
-	 * @return		æ‚èo‚µ‚½’l
+	 * @arg	n		å–ã‚Šå‡ºã™ãƒ‡ãƒ¼ã‚¿ã®ãƒ“ãƒƒãƒˆæ•°(æœ€å¤§=CUT_MAX)
+	 * @return		å–ã‚Šå‡ºã—ãŸå€¤
 	 * @author		TURNER
 	 */
 	protected int getBits( int n )
@@ -242,9 +242,9 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 *  ƒoƒCƒgƒXƒgƒŠ[ƒ€‚©‚ç1ƒrƒbƒg”‚Ìƒf[ƒ^‚ğØ‚èo‚·.
+	 *  ãƒã‚¤ãƒˆã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰1ãƒ“ãƒƒãƒˆæ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’åˆ‡ã‚Šå‡ºã™.
 	 * 
-	 * @return		æ‚èo‚µ‚½’li‚O‚‚’‚Pj
+	 * @return		å–ã‚Šå‡ºã—ãŸå€¤ï¼ˆï¼ï½ï½’ï¼‘ï¼‰
 	 * @author		TURNER
 	 */
 	protected int getBit()
@@ -263,11 +263,11 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 * ˜A‘±‚µ‚½ƒrƒbƒg‚Ì•À‚Ñ‚Ì”‚ğ”‚¦‚Ü‚·.
-	 * ˆø”‚Æˆá‚¤ƒrƒbƒg‚ªÅ‰‚ÉŒ»‚ê‚½‚Æ‚±‚ë‚Ü‚Å“Ç‚İ‚Ü‚ê‚½ˆµ‚¢‚É‚È‚è‚Ü‚·B
+	 * é€£ç¶šã—ãŸãƒ“ãƒƒãƒˆã®ä¸¦ã³ã®æ•°ã‚’æ•°ãˆã¾ã™.
+	 * å¼•æ•°ã¨é•ã†ãƒ“ãƒƒãƒˆãŒæœ€åˆã«ç¾ã‚ŒãŸã¨ã“ã‚ã¾ã§èª­ã¿è¾¼ã¾ã‚ŒãŸæ‰±ã„ã«ãªã‚Šã¾ã™ã€‚
 	 *
-	 * @check_bit	1‚È‚ç˜A‘±‚µ‚½‚P‚Ì”‚O‚È‚ç˜A‘±‚µ‚½‚O‚Ì”‚ğ”‚¦‚Ü‚·B
-	 * @return		˜A‘±‚µ‚½”(‚¢‚«‚È‚èˆø”‚Æˆá‚¤ƒrƒbƒg‚È‚ç‚O‚ğ•Ô‚·j
+	 * @check_bit	1ãªã‚‰é€£ç¶šã—ãŸï¼‘ã®æ•°ï¼ãªã‚‰é€£ç¶šã—ãŸï¼ã®æ•°ã‚’æ•°ãˆã¾ã™ã€‚
+	 * @return		é€£ç¶šã—ãŸæ•°(ã„ããªã‚Šå¼•æ•°ã¨é•ã†ãƒ“ãƒƒãƒˆãªã‚‰ï¼ã‚’è¿”ã™ï¼‰
 	 * @author		TURNER
 	 */
 	protected int getClusterLen(int check_bit)
@@ -314,9 +314,9 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 * ƒKƒ“ƒ}•„†‚ğæ‚èo‚·.
+	 * ã‚¬ãƒ³ãƒç¬¦å·ã‚’å–ã‚Šå‡ºã™.
 	 *
-	 * @return		ƒKƒ“ƒ}•„†‚ğ•œ†‚µ‚½Œ‹‰ÊB
+	 * @return		ã‚¬ãƒ³ãƒç¬¦å·ã‚’å¾©å·ã—ãŸçµæœã€‚
 	 */
 	protected int getGamma()
 		throws IOException
@@ -334,7 +334,7 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 * ‚PƒoƒCƒg“Ç‚İ‚İ.
+	 * ï¼‘ãƒã‚¤ãƒˆèª­ã¿è¾¼ã¿.
 	 */
 	private void readByte()
 		throws IOException
@@ -353,7 +353,7 @@ class BitCutter extends InputStream{
 	
 
 	/**
-	 * ƒJƒEƒ“ƒ^[’læ“¾.
+	 * ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å€¤å–å¾—.
 	 */
 	private long getReadCounterValue()
 	{
@@ -361,7 +361,7 @@ class BitCutter extends InputStream{
 	}
 
 	/**
-	 * ƒJƒEƒ“ƒ^[ƒŠƒZƒbƒg.
+	 * ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒªã‚»ãƒƒãƒˆ.
 	 */
 	private void resetReadCounter()
 	{

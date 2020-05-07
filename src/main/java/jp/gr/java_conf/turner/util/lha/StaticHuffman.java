@@ -10,7 +10,7 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * Ã“Iƒnƒtƒ}ƒ“«‘‚ÌŠî–{ƒNƒ‰ƒX.
+ * é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹.
  *
  * @auther TURNER
  */
@@ -26,15 +26,15 @@ class StaticHuffman  implements ItfHuffman
 
 	
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh•œ†ƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰å¾©å·ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * 
-	 * @param table_size ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³
+	 * @param table_size ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•
 	 */
 	protected StaticHuffman( int table_size ){
 		this.table_size = table_size;
 		//leafs = new Leaf[table_size];
 		
-		//ƒVƒ‡[ƒgƒJƒbƒgƒe[ƒuƒ‹‚Ì‘å‚«‚³‚ğŒˆ‚ß‚é
+		//ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®å¤§ãã•ã‚’æ±ºã‚ã‚‹
 		shortcuts_bits = 4;
 		while( (1<<shortcuts_bits) < table_size ){
 			shortcuts_bits++;
@@ -44,9 +44,9 @@ class StaticHuffman  implements ItfHuffman
 
 	
 	/**
-	 * ƒcƒŠ[‚ğ‚½‚Ç‚Á‚ÄƒfƒR[ƒh‚·‚é.
+	 * ãƒ„ãƒªãƒ¼ã‚’ãŸã©ã£ã¦ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹.
 	 *
-	 * @param cutter ƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param cutter ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	public int decode( BitCutter cutter )
 		throws IOException
@@ -73,11 +73,11 @@ class StaticHuffman  implements ItfHuffman
 	}
 	
 	/**
-	 * •„†’·‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş.
+	 * ç¬¦å·é•·ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€.
 	 *
-	 * @param effective_len_bits —LŒø•„†”‚Ì“Ç‚İ‚İƒrƒbƒg”
-	 * @param special_index      ‹ó”’ƒCƒ“ƒfƒbƒNƒXw’è
-	 * @param cutter             ƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param effective_len_bits æœ‰åŠ¹ç¬¦å·æ•°ã®èª­ã¿è¾¼ã¿ãƒ“ãƒƒãƒˆæ•°
+	 * @param special_index      ç©ºç™½ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æŒ‡å®š
+	 * @param cutter             ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	protected void readTableLen( int effective_len_bits, int special_index, BitCutter cutter )
 		throws IOException
@@ -122,14 +122,14 @@ class StaticHuffman  implements ItfHuffman
 	
 
 	/**
-	 *	•„†’·‚©‚ç•„†Œê‚ğ‚Â‚­‚é.
+	 *	ç¬¦å·é•·ã‹ã‚‰ç¬¦å·èªã‚’ã¤ãã‚‹.
 	 */
 	protected void makeTableCode()
 		throws IOException
 	{
 		int i,j;
 		/*
-		 *	•„†’·‚ÌoŒ»ŒÂ”‚ğƒJƒEƒ“ƒg
+		 *	ç¬¦å·é•·ã®å‡ºç¾å€‹æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 		 */
 		int[] len_count = new int[CODELEN_MAX + 1];
 		for( i=0; i < leafs.length; i++ ){
@@ -140,9 +140,9 @@ class StaticHuffman  implements ItfHuffman
 		}
 
 		/*
-		 *	•„†’·‚©‚çƒnƒtƒ}ƒ“•„†‚ğ¶¬
-		 *	ƒnƒtƒ}ƒ“ƒR[ƒh’·‚ª‚O‚Á‚Ä‚±‚Æ‚Í‚»‚ÌƒR[ƒh‚ÍŠ„‚è“–‚Ä‚ç‚ê‚Ä‚È‚¢‚Á‚Ä‚±‚Æ
-		 *	‚¾‚©‚çi=1‚©‚çˆ—‚ğŠJn‚·‚éB
+		 *	ç¬¦å·é•·ã‹ã‚‰ãƒãƒ•ãƒãƒ³ç¬¦å·ã‚’ç”Ÿæˆ
+		 *	ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰é•·ãŒï¼ã£ã¦ã“ã¨ã¯ãã®ã‚³ãƒ¼ãƒ‰ã¯å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ãªã„ã£ã¦ã“ã¨
+		 *	ã ã‹ã‚‰i=1ã‹ã‚‰å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹ã€‚
 		 */
 		int[] codeStart = new int[len_count.length+1];
 		for( i=1; i < (codeStart.length - 1); i++ ){
@@ -153,20 +153,20 @@ class StaticHuffman  implements ItfHuffman
 			for( j = 0 ; j < leafs.length ; j++ ){
 				if( leafs[j].code_len == i ){
 					leafs[j].code = codeStart[ i ]++;
-					leafs[j].real_code = j; //–{—ˆ‚ÌƒR[ƒh
+					leafs[j].real_code = j; //æœ¬æ¥ã®ã‚³ãƒ¼ãƒ‰
 				}
 			}
 		}
 	}
 
 	/**
-	 * •„†Œê‚©‚çƒcƒŠ[\‘¢‚ğ\’z‚·‚é.
+	 * ç¬¦å·èªã‹ã‚‰ãƒ„ãƒªãƒ¼æ§‹é€ ã‚’æ§‹ç¯‰ã™ã‚‹.
 	 */
 	protected void restoreTree()
 	{
 		int i;
 
-		//•„†Œê‚ª‚Pí—Ş‚µ‚©‚È‚©‚Á‚½‚Ì“Áêˆ—
+		//ç¬¦å·èªãŒï¼‘ç¨®é¡ã—ã‹ãªã‹ã£ãŸæ™‚ã®ç‰¹æ®Šå‡¦ç†
 		if( leafs.length == 1 ){
 			treeRoot = leafs[0];
 			for( i = 0; i < shortcuts.length; i++ ){
@@ -182,26 +182,26 @@ class StaticHuffman  implements ItfHuffman
 	
 		for( i=0; i < leafs.length; i++ ){
 			
-			//‚»‚ê‚¼‚ê‚Ìƒnƒtƒ}ƒ“ƒR[ƒh‚ğ‚Pƒrƒbƒg‚¸‚Â‚½‚Ç‚è‚È‚ª‚çƒcƒŠ[‚ğ‘g‚İ—§‚Ä‚Ä‚ä‚­
-			//ƒcƒŠ[‚Íí‚Éƒ‹[ƒg‚©‚ç‚½‚Ç‚èn‚ß‚é
+			//ãã‚Œãã‚Œã®ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã‚’ï¼‘ãƒ“ãƒƒãƒˆãšã¤ãŸã©ã‚ŠãªãŒã‚‰ãƒ„ãƒªãƒ¼ã‚’çµ„ã¿ç«‹ã¦ã¦ã‚†ã
+			//ãƒ„ãƒªãƒ¼ã¯å¸¸ã«ãƒ«ãƒ¼ãƒˆã‹ã‚‰ãŸã©ã‚Šå§‹ã‚ã‚‹
 			currentNode = (Branch)treeRoot; 		
 			mask = 1 << (leafs[i].code_len - 1);
 			for( int j=0; j < leafs[i].code_len; j++ ){
 
 				if( (leafs[i].code & mask) != 0 ){
-					//ƒR[ƒh‚Ìƒrƒbƒg‚ª‚P‚¾‚Á‚½‚Æ‚«‚Ìˆ—B
+					//ã‚³ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆãŒï¼‘ã ã£ãŸã¨ãã®å‡¦ç†ã€‚
 					
-					//ƒnƒtƒ}ƒ“ƒR[ƒh‚ÌÅŒã‚É‚½‚Ç‚è’…‚¢‚½‚çƒcƒŠ[‚Ì—t‚Æ‚µ‚Ä“o˜^‚·‚éB
+					//ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®æœ€å¾Œã«ãŸã©ã‚Šç€ã„ãŸã‚‰ãƒ„ãƒªãƒ¼ã®è‘‰ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ã€‚
 					if( j == (leafs[i].code_len - 1) ){
 						currentNode.child_1 = leafs[i];
 					}
 					else{
-						//‚à‚µŠù‚Éƒm[ƒh‚ª—L‚ê‚Î‚»‚±‚ğ‚½‚Ç‚Á‚Ä‚ä‚­B
-						//‚È‚¯‚ê‚ÎAV‚µ‚¢ƒm[ƒh‚ğì‚éB
+						//ã‚‚ã—æ—¢ã«ãƒãƒ¼ãƒ‰ãŒæœ‰ã‚Œã°ãã“ã‚’ãŸã©ã£ã¦ã‚†ãã€‚
+						//ãªã‘ã‚Œã°ã€æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’ä½œã‚‹ã€‚
 						if( currentNode.child_1 == null ){
 							currentNode.child_1 = new Branch();
 							
-							//ƒVƒ‡[ƒgƒJƒbƒg‚Ì”z—ñ‚ÉƒZƒbƒg
+							//ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã®é…åˆ—ã«ã‚»ãƒƒãƒˆ
 							if( j == (shortcuts_bits-1) ){
 							    int index = leafs[i].code >>> (leafs[i].code_len - shortcuts_bits);
 								shortcuts[index] = currentNode.child_1;
@@ -211,19 +211,19 @@ class StaticHuffman  implements ItfHuffman
 					}
 				}
 				else{
-					//ƒR[ƒh‚Ìƒrƒbƒg‚ª‚O‚¾‚Á‚½‚Æ‚«‚Ìˆ—
+					//ã‚³ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆãŒï¼ã ã£ãŸã¨ãã®å‡¦ç†
 					
-					//ƒnƒtƒ}ƒ“ƒR[ƒh‚ÌÅŒã‚É‚½‚Ç‚è’…‚¢‚½‚çƒcƒŠ[‚Ì—t‚Æ‚µ‚Ä“o˜^‚·‚éB
+					//ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®æœ€å¾Œã«ãŸã©ã‚Šç€ã„ãŸã‚‰ãƒ„ãƒªãƒ¼ã®è‘‰ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ã€‚
 					if( j == (leafs[i].code_len - 1) ){
 						currentNode.child_0 = leafs[i];
 					}
 					else{
-						//‚à‚µŠù‚Éƒm[ƒh‚ª—L‚ê‚Î‚»‚±‚ğ‚½‚Ç‚Á‚Ä‚ä‚­B
-						//‚È‚¯‚ê‚ÎAV‚µ‚¢ƒm[ƒh‚ğì‚éB
+						//ã‚‚ã—æ—¢ã«ãƒãƒ¼ãƒ‰ãŒæœ‰ã‚Œã°ãã“ã‚’ãŸã©ã£ã¦ã‚†ãã€‚
+						//ãªã‘ã‚Œã°ã€æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’ä½œã‚‹ã€‚
 						if( currentNode.child_0 == null ){
 							currentNode.child_0 = new Branch();
 							
-							//ƒVƒ‡[ƒgƒJƒbƒg‚Ì”z—ñ‚ÉƒZƒbƒg
+							//ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã®é…åˆ—ã«ã‚»ãƒƒãƒˆ
 							if( j == (shortcuts_bits-1) ){
 							    int index = leafs[i].code >>> (leafs[i].code_len - shortcuts_bits);
 								shortcuts[index] = currentNode.child_0;
@@ -233,11 +233,11 @@ class StaticHuffman  implements ItfHuffman
 					}
 				}
 
-				//ƒrƒbƒgƒ}ƒXƒN‚ğ‚P‚Âi‚ß‚é
+				//ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯ã‚’ï¼‘ã¤é€²ã‚ã‚‹
 				mask >>>= 1;
 			}
 
-			//ƒVƒ‡[ƒgƒJƒbƒg‚Ì”z—ñ‚ÉƒZƒbƒg
+			//ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã®é…åˆ—ã«ã‚»ãƒƒãƒˆ
 			if( leafs[i].code_len > 0 && leafs[i].code_len <= shortcuts_bits ){
 				int index_mask = ((1 << leafs[i].code_len)-1) << (shortcuts_bits - leafs[i].code_len);
 				int index = leafs[i].code << (shortcuts_bits - leafs[i].code_len);
@@ -249,19 +249,19 @@ class StaticHuffman  implements ItfHuffman
 	}
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş.
+	 * ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€.
 	 *
-	 * @param effective_len_bits —LŒø•„†”‚Ì“Ç‚İ‚İƒrƒbƒg”
-	 * @param special_index      ‹ó”’ƒCƒ“ƒfƒbƒNƒXw’è
-	 * @param cutter             ƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param effective_len_bits æœ‰åŠ¹ç¬¦å·æ•°ã®èª­ã¿è¾¼ã¿ãƒ“ãƒƒãƒˆæ•°
+	 * @param special_index      ç©ºç™½ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æŒ‡å®š
+	 * @param cutter             ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	protected void loadFrom(  int effective_len_bits, int special_index,
 			BitCutter cutter )
 		throws IOException
 	{
 		readTableLen( effective_len_bits, special_index, cutter );
-		//ƒR[ƒh‚ª‚P‚Â‚µ‚©‚È‚¢ƒe[ƒuƒ‹‚Ìê‡
-		//ƒnƒtƒ}ƒ“ƒR[ƒh‚ÌŠ„‚èU‚è‚Í‚¢‚ç‚È‚¢B
+		//ã‚³ãƒ¼ãƒ‰ãŒï¼‘ã¤ã—ã‹ãªã„ãƒ†ãƒ¼ãƒ–ãƒ«ã®å ´åˆ
+		//ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®å‰²ã‚ŠæŒ¯ã‚Šã¯ã„ã‚‰ãªã„ã€‚
 		if( leafs.length > 1 ){
 			makeTableCode();
 		}

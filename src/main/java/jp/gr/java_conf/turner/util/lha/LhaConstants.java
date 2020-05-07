@@ -8,28 +8,28 @@
 package jp.gr.java_conf.turner.util.lha;
 
 /**
- * LHA‚ÌŠeí’è”‚ğ’è‹`‚µ‚Ü‚·B
+ * LHAã®å„ç¨®å®šæ•°ã‚’å®šç¾©ã—ã¾ã™ã€‚
  *
  * @version 	0.1, 2000/03/13
  */
 public interface LhaConstants{
 
 	/** 
-	 * ƒŠ[ƒhƒIƒ“ƒŠ[‘®«’l—pƒ}ƒXƒN.
+	 * ãƒªãƒ¼ãƒ‰ã‚ªãƒ³ãƒªãƒ¼å±æ€§å€¤ç”¨ãƒã‚¹ã‚¯.
 	 * @see LhaEntry#getAttribute() 
 	 * @see LhaEntry#setAttribute(byte)
 	 */
 	public static final byte FA_RDONLY= 1;
 
 	/** 
-	 * ‰B‚µƒtƒ@ƒCƒ‹‘®«’l—pƒ}ƒXƒN.
+	 * éš ã—ãƒ•ã‚¡ã‚¤ãƒ«å±æ€§å€¤ç”¨ãƒã‚¹ã‚¯.
 	 * @see LhaEntry#getAttribute() 
 	 * @see LhaEntry#setAttribute(byte)
 	 */
 	public static final byte FA_HIDDEN= 2;
 
 	/** 
-	 * ƒVƒXƒeƒ€ƒtƒ@ƒCƒ‹‘®«’l—pƒ}ƒXƒN.
+	 * ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚¡ã‚¤ãƒ«å±æ€§å€¤ç”¨ãƒã‚¹ã‚¯.
 	 * @see LhaEntry#getAttribute() 
 	 * @see LhaEntry#setAttribute(byte)
 	 */
@@ -37,169 +37,169 @@ public interface LhaConstants{
 
 
 	/** 
-	 * ƒ{ƒŠƒ…[ƒ€ƒ‰ƒxƒ‹‘®«’l—pƒ}ƒXƒNi‘½•ªg‚í‚È‚¢Hj.
+	 * ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ©ãƒ™ãƒ«å±æ€§å€¤ç”¨ãƒã‚¹ã‚¯ï¼ˆå¤šåˆ†ä½¿ã‚ãªã„ï¼Ÿï¼‰.
 	 * @see LhaEntry#getAttribute() 
 	 * @see LhaEntry#setAttribute(byte)
 	 */
 	public static final byte FA_LABEL = 8;
 
 	/** 
-	 * ƒfƒBƒŒƒNƒgƒŠ‘®«’l—pƒ}ƒXƒN.
+	 * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå±æ€§å€¤ç”¨ãƒã‚¹ã‚¯.
 	 * @see LhaEntry#getAttribute() 
 	 * @see LhaEntry#setAttribute(byte)
 	 */
 	public static final byte FA_DIREC =16;
 
 	/** 
-	 * ƒA[ƒJƒCƒuƒtƒ‰ƒO‘®«’l—pƒ}ƒXƒN.
+	 * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ãƒ©ã‚°å±æ€§å€¤ç”¨ãƒã‚¹ã‚¯.
 	 * @see LhaEntry#getAttribute() 
 	 * @see LhaEntry#setAttribute(byte)
 	 */
 	public static final byte FA_ARCH  =32;
 
 	/*
-	 *OSTYPE’è”‚É‚Â‚¢‚Ä‚ÍˆÈ‰º‚ÌƒTƒCƒg‚Ìî•ñ‚ğŒ³‚É‚µ‚Ä‚¢‚Ü‚·B
-	 *iDolphin's ƒz[ƒ€ƒy[ƒWj
+	 *OSTYPEå®šæ•°ã«ã¤ã„ã¦ã¯ä»¥ä¸‹ã®ã‚µã‚¤ãƒˆã®æƒ…å ±ã‚’å…ƒã«ã—ã¦ã„ã¾ã™ã€‚
+	 *ï¼ˆDolphin's ãƒ›ãƒ¼ãƒ ãƒšãƒ¼ã‚¸ï¼‰
 	 * http://www2m.biglobe.ne.jp/~dolphin/
 	 *
-	 * Œö®‚É—\–ñ‚³‚ê‚Ä‚¢‚é‚à‚Ì 
-	 * ‚±‚±‚Å‚¢‚¤Œö®‚Æ‚ÍALHA‚ÌŠJ”­Ò‚Å‚ ‚é‹gè‚ª
-	 * CMAGAZINE1991/1‚Ì‹L–‚ÅŒö•\‚µ‚½‚à‚Ì‚Æ‚¢‚¤ˆÓ–¡‚¾‚»‚¤B
+	 * å…¬å¼ã«äºˆç´„ã•ã‚Œã¦ã„ã‚‹ã‚‚ã® 
+	 * ã“ã“ã§ã„ã†å…¬å¼ã¨ã¯ã€LHAã®é–‹ç™ºè€…ã§ã‚ã‚‹å‰å´æ°ãŒ
+	 * CMAGAZINE1991/1ã®è¨˜äº‹ã§å…¬è¡¨ã—ãŸã‚‚ã®ã¨ã„ã†æ„å‘³ã ãã†ã€‚
 	 */
 
 	/** 
-	 * OSƒ^ƒCƒvMS-DOS.
-	 * <p>’l='M'<p>
+	 * OSã‚¿ã‚¤ãƒ—MS-DOS.
+	 * <p>å€¤='M'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_MSDOS = 'M';
 	/** 
-	 * OSƒ^ƒCƒvOS/2.
-	 * <p>’l='2'<p>
+	 * OSã‚¿ã‚¤ãƒ—OS/2.
+	 * <p>å€¤='2'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_OS2   = '2';
 	/** 
-	 * OSƒ^ƒCƒvOS-9.(MacOS‚Å‚Í‚È‚¢).
-	 * <p>’l='9'<p>
+	 * OSã‚¿ã‚¤ãƒ—OS-9.(MacOSã§ã¯ãªã„).
+	 * <p>å€¤='9'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_OS9   = '9';
 	/** 
-	 * OSƒ^ƒCƒvOS68K.
-	 * <p>’l='K'<p>
+	 * OSã‚¿ã‚¤ãƒ—OS68K.
+	 * <p>å€¤='K'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_OS68K = 'K';
 	/** 
-	 * OSƒ^ƒCƒvOS386.
-	 * <p>’l='3'<p>
+	 * OSã‚¿ã‚¤ãƒ—OS386.
+	 * <p>å€¤='3'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_OS386 = '3';
 	/** 
-	 * OSƒ^ƒCƒvHUMAN68K.
-	 * <p>’l='H'<p>
+	 * OSã‚¿ã‚¤ãƒ—HUMAN68K.
+	 * <p>å€¤='H'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_HUMAN = 'H';
 	/** 
-	 * OSƒ^ƒCƒvUNIX.
-	 * <p>’l='U'<p>
+	 * OSã‚¿ã‚¤ãƒ—UNIX.
+	 * <p>å€¤='U'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_UNIX  = 'U';
 	/** 
-	 * OSƒ^ƒCƒvCP/M.
-	 * <p>’l='C'<p>
+	 * OSã‚¿ã‚¤ãƒ—CP/M.
+	 * <p>å€¤='C'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_CPM   = 'C';
 	/** 
-	 * OSƒ^ƒCƒvFLEX.
-	 * <p>’l='F'<p>
+	 * OSã‚¿ã‚¤ãƒ—FLEX.
+	 * <p>å€¤='F'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_FLEX  = 'F';
 	/** 
-	 * OSƒ^ƒCƒvMacOS.
-	 * <p>’l='m'<p>
+	 * OSã‚¿ã‚¤ãƒ—MacOS.
+	 * <p>å€¤='m'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_MAC   = 'm';
 	/** 
-	 * OSƒ^ƒCƒvRUNSER.
-	 * <p>’l='R'<p>
+	 * OSã‚¿ã‚¤ãƒ—RUNSER.
+	 * <p>å€¤='R'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_RUNSER= 'R';
 
 	/** 
-	 * OSƒ^ƒCƒvWindowsNT. <p>
-	 * ”ñŒö®.(‹gè‚ªCMAGAZINE1991/1‚Ì‹L–‚Å‘‚¢‚½‚à‚Ì‚Å‚È‚¢‚Æ‚¢‚¤ˆÓ–¡)
-	 * <p>OSTYPE_MSDOS‚ªg‚í‚ê‚é‚±‚Æ‚ª‘½‚¢B<p>
-	 * <p>’l='W'<p>
+	 * OSã‚¿ã‚¤ãƒ—WindowsNT. <p>
+	 * éå…¬å¼.(å‰å´æ°ãŒCMAGAZINE1991/1ã®è¨˜äº‹ã§æ›¸ã„ãŸã‚‚ã®ã§ãªã„ã¨ã„ã†æ„å‘³)
+	 * <p>OSTYPE_MSDOSãŒä½¿ã‚ã‚Œã‚‹ã“ã¨ãŒå¤šã„ã€‚<p>
+	 * <p>å€¤='W'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_NT    = 'W';
 	/** 
-	 * OSƒ^ƒCƒvWindows95. <p>
-	 * ”ñŒö®.(‹gè‚ªCMAGAZINE1991/1‚Ì‹L–‚Å‘‚¢‚½‚à‚Ì‚Å‚È‚¢‚Æ‚¢‚¤ˆÓ–¡)
-	 * <p>OSTYPE_MSDOS‚ªg‚í‚ê‚é‚±‚Æ‚ª‘½‚¢B<p>
-	 * <p>’l='w'<p>
+	 * OSã‚¿ã‚¤ãƒ—Windows95. <p>
+	 * éå…¬å¼.(å‰å´æ°ãŒCMAGAZINE1991/1ã®è¨˜äº‹ã§æ›¸ã„ãŸã‚‚ã®ã§ãªã„ã¨ã„ã†æ„å‘³)
+	 * <p>OSTYPE_MSDOSãŒä½¿ã‚ã‚Œã‚‹ã“ã¨ãŒå¤šã„ã€‚<p>
+	 * <p>å€¤='w'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_95    = 'w';
 	/** 
-	 * OSƒ^ƒCƒvTOWNSOS. <p>
-	 * ”ñŒö®.(‹gè‚ªCMAGAZINE1991/1‚Ì‹L–‚Å‘‚¢‚½‚à‚Ì‚Å‚È‚¢‚Æ‚¢‚¤ˆÓ–¡)
-	 * <p>’l='T'<p>
+	 * OSã‚¿ã‚¤ãƒ—TOWNSOS. <p>
+	 * éå…¬å¼.(å‰å´æ°ãŒCMAGAZINE1991/1ã®è¨˜äº‹ã§æ›¸ã„ãŸã‚‚ã®ã§ãªã„ã¨ã„ã†æ„å‘³)
+	 * <p>å€¤='T'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_TOWNSOS='T';  
 	/** 
-	 * OSƒ^ƒCƒvXOSK. <p>
-	 * ”ñŒö®.(‹gè‚ªCMAGAZINE1991/1‚Ì‹L–‚Å‘‚¢‚½‚à‚Ì‚Å‚È‚¢‚Æ‚¢‚¤ˆÓ–¡)
-	 * <p>’l='X'<p>
+	 * OSã‚¿ã‚¤ãƒ—XOSK. <p>
+	 * éå…¬å¼.(å‰å´æ°ãŒCMAGAZINE1991/1ã®è¨˜äº‹ã§æ›¸ã„ãŸã‚‚ã®ã§ãªã„ã¨ã„ã†æ„å‘³)
+	 * <p>å€¤='X'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_XOSK  = 'X';  
 
 	/** 
-	 * OSƒ^ƒCƒvGENERIC(”Ä—p/–³w’è). <p>
-	 * ‘‚«‚İ‚ÌOSTYPE‚Í‚±‚Ì’l‚ªƒfƒtƒHƒ‹ƒg(—\’è).<p>
-	 * <p>’l='\0'<p>
+	 * OSã‚¿ã‚¤ãƒ—GENERIC(æ±ç”¨/ç„¡æŒ‡å®š). <p>
+	 * æ›¸ãè¾¼ã¿æ™‚ã®OSTYPEã¯ã“ã®å€¤ãŒãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ(äºˆå®š).<p>
+	 * <p>å€¤='\0'<p>
 	 * @see LhaEntry#getOSType() 
 	 * @see LhaEntry#setOSType(char)
 	 */
 	public static final char OSTYPE_GENERIC = '\0';
 
 	/** 
-	 * ˆ³kŒ`®lh0(–³ˆ³k). <p>
-	 * ’l="-lh0-"<p>
+	 * åœ§ç¸®å½¢å¼lh0(ç„¡åœ§ç¸®). <p>
+	 * å€¤="-lh0-"<p>
 	 * @see LhaEntry#getCompressMethod() 
 	 * @see LhaEntry#setCompressMethod(String)
 	 */
 	public static final String METHOD_LH0 = "-lh0-";
 
 	/** 
-	 * ˆ³kŒ`®lh1. <p>
-	 * ’l="-lh1-"<p>
+	 * åœ§ç¸®å½¢å¼lh1. <p>
+	 * å€¤="-lh1-"<p>
      * 4k sliding dictionary(max 60 bytes) + dynamic Huffman
      * + fixed encoding of position.
      *
@@ -209,11 +209,11 @@ public interface LhaConstants{
 	public static final String METHOD_LH1 = "-lh1-";
 
 	/** 
-	 * ˆ³kŒ`®lh2. <p>
-	 * ’l="-lh2-"<p>
+	 * åœ§ç¸®å½¢å¼lh2. <p>
+	 * å€¤="-lh2-"<p>
 	 * 8k sliding dictionary(max 256 bytes) + dynamic Huffman
 	 * <p>
-	 * <STRONG>Œ»İ–¢ƒTƒ|[ƒg</STRONG>
+	 * <STRONG>ç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆ</STRONG>
 	 * <p>
 	 * @see LhaEntry#getCompressMethod() 
 	 * @see LhaEntry#setCompressMethod(String)
@@ -221,11 +221,11 @@ public interface LhaConstants{
 	public static final String METHOD_LH2 = "-lh2-";
 
 	/** 
-	 * ˆ³kŒ`®lh3. <p>
-	 * ’l="-lh3-"<p>
+	 * åœ§ç¸®å½¢å¼lh3. <p>
+	 * å€¤="-lh3-"<p>
 	 * 8k sliding dictionary(max 256 bytes) + static Huffman
 	 + <p>
-	 * <STRONG>Œ»İ–¢ƒTƒ|[ƒg</STRONG>
+	 * <STRONG>ç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆ</STRONG>
 	 * <p>
 	 * @see LhaEntry#getCompressMethod() 
 	 * @see LhaEntry#setCompressMethod(String)
@@ -233,8 +233,8 @@ public interface LhaConstants{
 	public static final String METHOD_LH3 = "-lh3-";
 
 	/** 
-	 * ˆ³kŒ`®lh4. <p>
-	 * ’l="-lh4-"<p>
+	 * åœ§ç¸®å½¢å¼lh4. <p>
+	 * å€¤="-lh4-"<p>
 	 * 4k sliding dictionary(max 256 bytes) + static Huffman
 	 *  + improved encoding of position and trees
 	 *
@@ -245,8 +245,8 @@ public interface LhaConstants{
               
 
 	/** 
-	 * ˆ³kŒ`®lh5. <p>
-	 * ’l="-lh5-"<p>
+	 * åœ§ç¸®å½¢å¼lh5. <p>
+	 * å€¤="-lh5-"<p>
      * 8k sliding dictionary(max 256 bytes) + static Huffman
      *         + improved encoding of position and trees
 	 * @see LhaEntry#getCompressMethod() 
@@ -255,8 +255,8 @@ public interface LhaConstants{
 	public static final String METHOD_LH5 = "-lh5-";
 
 	/** 
-	 * ˆ³kŒ`®lh6. <p>
-	 * ’l="-lh6-"<p>
+	 * åœ§ç¸®å½¢å¼lh6. <p>
+	 * å€¤="-lh6-"<p>
      *  32k sliding dictionary(max 256 bytes) + static Huffman
 	 *  + improved encoding of position and trees
 	 * @see LhaEntry#getCompressMethod() 
@@ -265,8 +265,8 @@ public interface LhaConstants{
 	public static final String METHOD_LH6 = "-lh6-";
 
 	/** 
-	 * ˆ³kŒ`®lh7. <p>
-	 * ’l="-lh7-"<p>
+	 * åœ§ç¸®å½¢å¼lh7. <p>
+	 * å€¤="-lh7-"<p>
      *  64k sliding dictionary(max 256 bytes) + static Huffman
 	 *	  + improved encoding of position and trees.
      *
@@ -276,11 +276,11 @@ public interface LhaConstants{
 	public static final String METHOD_LH7 = "-lh7-";
 
 	/** 
-	 * ˆ³kŒ`®lzs. <p>
+	 * åœ§ç¸®å½¢å¼lzs. <p>
 	 *"-lzs-"<p>
 	 * 2k sliding dictionary(max 17 bytes)
 	 * <p>
-	 * <STRONG>Œ»İ–¢ƒTƒ|[ƒg</STRONG>
+	 * <STRONG>ç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆ</STRONG>
 	 * <p>
 	 * @see LhaEntry#getCompressMethod() 
 	 * @see LhaEntry#setCompressMethod(String)
@@ -288,11 +288,11 @@ public interface LhaConstants{
 	public static final String METHOD_LZS = "-lzs-";
 
 	/** 
-	 * ˆ³kŒ`®lz4(–³ˆ³k). <p>
-	 * ’l="-lz4-"<p>
+	 * åœ§ç¸®å½¢å¼lz4(ç„¡åœ§ç¸®). <p>
+	 * å€¤="-lz4-"<p>
 	 * no compression
 	 * <p>
-	 * <STRONG>Œ»İ–¢ƒTƒ|[ƒg</STRONG>
+	 * <STRONG>ç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆ</STRONG>
 	 * <p>
 	 * @see LhaEntry#getCompressMethod() 
 	 * @see LhaEntry#setCompressMethod(String)
@@ -300,11 +300,11 @@ public interface LhaConstants{
 	public static final String METHOD_LZ4 = "-lz4-";
 
 	/** 
-	 * ˆ³kŒ`®lz5. <p>
-	 * ’l="-lz5-"<p>
+	 * åœ§ç¸®å½¢å¼lz5. <p>
+	 * å€¤="-lz5-"<p>
 	 * 4k sliding dictionary(max 17 bytes)
 	 * <p>
-	 * <STRONG>Œ»İ–¢ƒTƒ|[ƒg</STRONG>
+	 * <STRONG>ç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆ</STRONG>
 	 * <p>
 	 * @see LhaEntry#getCompressMethod() 
 	 * @see LhaEntry#setCompressMethod(String)

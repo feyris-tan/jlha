@@ -10,7 +10,7 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * ƒGƒ“ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘.
+ * ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸.
  *
  * @auther TURNER
  */
@@ -19,13 +19,13 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	//protected Leaf[] encodeTable;
 
 	/**
-	 * false‚Ì‚Íƒnƒtƒ}ƒ“ƒcƒŠ[\’z‚Ì‚½‚ß‚Ì•p“xûWƒ‚[ƒh.
+	 * falseã®æ™‚ã¯ãƒãƒ•ãƒãƒ³ãƒ„ãƒªãƒ¼æ§‹ç¯‰ã®ãŸã‚ã®é »åº¦åé›†ãƒ¢ãƒ¼ãƒ‰.
 	 */
 	protected boolean encodeModeFlg = false;
 
 	/**
-	 * •p“xûWƒ‚[ƒh‚©‚çÀÛ‚ÉƒGƒ“ƒR[ƒh‚·‚éƒ‚[ƒh‚ÉˆÚs‚·‚éŠÖ”.
-	 * ƒnƒtƒ}ƒ“ƒcƒŠ[ƒIƒuƒWƒFƒNƒg‚Íg‚¢Ì‚Ä‚È‚Ì‚ÅŒ³‚É–ß‚·•û–@‚Í‚È‚¢.
+	 * é »åº¦åé›†ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰å®Ÿéš›ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã™ã‚‹é–¢æ•°.
+	 * ãƒãƒ•ãƒãƒ³ãƒ„ãƒªãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ä½¿ã„æ¨ã¦ãªã®ã§å…ƒã«æˆ»ã™æ–¹æ³•ã¯ãªã„.
 	 *
 	 */
 	protected void setEncodeMode(){
@@ -33,9 +33,9 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh•œ†ƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰å¾©å·ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * 
-	 * @param table_size ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³
+	 * @param table_size ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•
 	 */
 	protected StaticWriteHuff( int table_size ){
 		super( table_size );
@@ -43,12 +43,12 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh‚·‚é.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹.
 	 * 
-	 * @param real_code    Œ³ƒf[ƒ^ƒR[ƒh
-	 * @param packer       ƒrƒbƒgƒpƒbƒJ[
+	 * @param real_code    å…ƒãƒ‡ãƒ¼ã‚¿ã‚³ãƒ¼ãƒ‰
+	 * @param packer       ãƒ“ãƒƒãƒˆãƒ‘ãƒƒã‚«ãƒ¼
 	 *
-	 * @throws IOException IOƒGƒ‰[‚ª‹N‚±‚Á‚½‚Æ‚«
+	 * @throws IOException IOã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã£ãŸã¨ã
 	 */
 	public void encode( int real_code, BitPacker packer )
 		throws IOException
@@ -57,20 +57,20 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 			Leaf leaf = leafs[real_code];
 			packer.putBits( leaf.code, leaf.code_len );
 		}else{
-			countFreq( real_code ); /* •p“x‚ğ”‚¦‚é */
+			countFreq( real_code ); /* é »åº¦ã‚’æ•°ãˆã‚‹ */
 		}
 	}
 
 
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ğƒtƒ@ƒCƒ‹‚É‘‚«‚Ş.
+	 * ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€.
 	 *
-	 * @param effective_len_bits —LŒø•„†”‚Ì“Ç‚İ‚İƒrƒbƒg”
-	 * @param special_index      ‹ó”’ƒCƒ“ƒfƒbƒNƒXw’è
-	 * @param packer             ƒrƒbƒgƒpƒbƒJ[iƒXƒgƒŠ[ƒ€j
+	 * @param effective_len_bits æœ‰åŠ¹ç¬¦å·æ•°ã®èª­ã¿è¾¼ã¿ãƒ“ãƒƒãƒˆæ•°
+	 * @param special_index      ç©ºç™½ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æŒ‡å®š
+	 * @param packer             ãƒ“ãƒƒãƒˆãƒ‘ãƒƒã‚«ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 *
-	 * @param IOException IOƒGƒ‰[‚ª‹N‚±‚Á‚½‚Æ‚«
+	 * @param IOException IOã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã£ãŸã¨ã
 	 */
 	protected void makeTreeAndSaveTo(  int effective_len_bits, int special_index,
 			BitPacker packer )
@@ -97,8 +97,8 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 			leafs[0] = sort[0];
 		}
 
-		//ƒR[ƒh‚ª‚P‚Â‚µ‚©‚È‚¢ƒe[ƒuƒ‹‚Ìê‡
-		//ƒnƒtƒ}ƒ“ƒR[ƒh‚ÌŠ„‚èU‚è‚Í‚¢‚ç‚È‚¢B
+		//ã‚³ãƒ¼ãƒ‰ãŒï¼‘ã¤ã—ã‹ãªã„ãƒ†ãƒ¼ãƒ–ãƒ«ã®å ´åˆ
+		//ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®å‰²ã‚ŠæŒ¯ã‚Šã¯ã„ã‚‰ãªã„ã€‚
 		if( sort.length > 1 ){
 			makeTableCode();
 		}
@@ -118,7 +118,7 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * •p“x‚ğWŒv‚·‚é‚½‚ß‚É‰Šú‰»‚·‚é.
+	 * é »åº¦ã‚’é›†è¨ˆã™ã‚‹ãŸã‚ã«åˆæœŸåŒ–ã™ã‚‹.
 	 * 
 	 */
 	private void initFreq(){
@@ -130,22 +130,22 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * •p“x‚ğWŒv‚·‚é.
+	 * é »åº¦ã‚’é›†è¨ˆã™ã‚‹.
 	 *
-	 * @param code •p“x‚ğ”‚¦‚éƒR[ƒh
+	 * @param code é »åº¦ã‚’æ•°ãˆã‚‹ã‚³ãƒ¼ãƒ‰
 	 */
 	private void countFreq( int code ){
 		leafs[code].freq++;
 	}
 
 	/**
-	 * •„†’·‚ğƒtƒ@ƒCƒ‹‚É‘‚«‚Ş.
+	 * ç¬¦å·é•·ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€.
 	 *
-	 * @param effective_len_bits —LŒø•„†”‚Ìƒrƒbƒg”
-	 * @param special_index      ‹ó”’ƒCƒ“ƒfƒbƒNƒXw’è
-	 * @param packer             ƒrƒbƒgƒpƒbƒJ[iƒXƒgƒŠ[ƒ€j
+	 * @param effective_len_bits æœ‰åŠ¹ç¬¦å·æ•°ã®ãƒ“ãƒƒãƒˆæ•°
+	 * @param special_index      ç©ºç™½ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æŒ‡å®š
+	 * @param packer             ãƒ“ãƒƒãƒˆãƒ‘ãƒƒã‚«ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 *
-	 * @param IOException ‚h‚nƒGƒ‰[‚ª‹N‚±‚Á‚½‚Æ‚«
+	 * @param IOException ï¼©ï¼¯ã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã£ãŸã¨ã
 	 */
 	protected void writeTableLen( int effective_len_bits, int special_index, 
 			BitPacker packer )
@@ -181,12 +181,12 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * heapˆ—‚ÌƒTƒuˆ—.
-	 * b’èƒcƒŠ[ì¬ŠÖ”‚Åg—p‚·‚é.
+	 * heapå‡¦ç†ã®ã‚µãƒ–å‡¦ç†.
+	 * æš«å®šãƒ„ãƒªãƒ¼ä½œæˆé–¢æ•°ã§ä½¿ç”¨ã™ã‚‹.
 	 * 
-	 * @param i         ƒq[ƒvã‚Ìˆ—‘ÎÛƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX.
-	 * @param heap      ƒq[ƒv
-	 * @param heapsize  ƒq[ƒvã‚ÅÀÛ‚Ég—p‚µ‚Ä‚¢‚é‘å‚«‚³
+	 * @param i         ãƒ’ãƒ¼ãƒ—ä¸Šã®å‡¦ç†å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹.
+	 * @param heap      ãƒ’ãƒ¼ãƒ—
+	 * @param heapsize  ãƒ’ãƒ¼ãƒ—ä¸Šã§å®Ÿéš›ã«ä½¿ç”¨ã—ã¦ã„ã‚‹å¤§ãã•
 	 */
 	private void downHeap( int i, TreeNode[] heap, int heapsize ){
 		int j;
@@ -207,18 +207,18 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * b’èƒcƒŠ[ì¬ŠÖ”.
-	 * •p“xWŒvŒ‹‰Ê‚ğ—˜—p‚µ‚Ä
-	 * heapƒ\[ƒg‚Ì‰—p‚ÅhaffmanƒcƒŠ[‚ğb’è“I‚É\’z‚·‚é.
+	 * æš«å®šãƒ„ãƒªãƒ¼ä½œæˆé–¢æ•°.
+	 * é »åº¦é›†è¨ˆçµæœã‚’åˆ©ç”¨ã—ã¦
+	 * heapã‚½ãƒ¼ãƒˆã®å¿œç”¨ã§haffmanãƒ„ãƒªãƒ¼ã‚’æš«å®šçš„ã«æ§‹ç¯‰ã™ã‚‹.
 	 *
-	 * @return •p“xfreq‚Ì¸‡‚Éƒ\[ƒg‚³‚ê‚½ƒcƒŠ[‚Ì—t‚Ì”z—ñ
+	 * @return é »åº¦freqã®æ˜‡é †ã«ã‚½ãƒ¼ãƒˆã•ã‚ŒãŸãƒ„ãƒªãƒ¼ã®è‘‰ã®é…åˆ—
 	 */
 	protected Leaf[] makeProvisionalTree() {
 		int i;
 		int heap_size;
 		TreeNode[] heap = new TreeNode[leafs.length*2];
 
-		heap_size = 1; //ƒq[ƒv‚Å‚Í‚O‚ÌƒCƒ“ƒfƒbƒNƒX‚Íg‚í‚È‚¢‚Ì‚Å‚P‚©‚ç‚Í‚¶‚ß‚é
+		heap_size = 1; //ãƒ’ãƒ¼ãƒ—ã§ã¯ï¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯ä½¿ã‚ãªã„ã®ã§ï¼‘ã‹ã‚‰ã¯ã˜ã‚ã‚‹
 		for( i = 0; i < leafs.length; i++ ){
 			if( leafs[i].freq > 0 ){
 				heap[heap_size] = leafs[i];
@@ -226,7 +226,7 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 			}
 		}
 
-		//€–Ú‚ª‚È‚¢Bƒq[ƒv‚Í‚P‚©‚çn‚Ü‚Á‚Ä‚¢‚é‚Ì‚Å
+		//é …ç›®ãŒãªã„ã€‚ãƒ’ãƒ¼ãƒ—ã¯ï¼‘ã‹ã‚‰å§‹ã¾ã£ã¦ã„ã‚‹ã®ã§
 		if( heap_size == 1 ){
 			throw new InternalError( "no freq data." );
 		}
@@ -238,12 +238,12 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 			code_len_sort[0] = (Leaf)heap[1];
 		}else{
 
-			//* ¬‚³‚È•p“x‚Ìƒm[ƒh‚ª’¸“_‚É‚­‚é‚æ‚¤‚Éƒq[ƒv‚ğ³‹K‰»‚·‚é**
+			//* å°ã•ãªé »åº¦ã®ãƒãƒ¼ãƒ‰ãŒé ‚ç‚¹ã«ãã‚‹ã‚ˆã†ã«ãƒ’ãƒ¼ãƒ—ã‚’æ­£è¦åŒ–ã™ã‚‹**
 			for( i = heap_size / 2; i >= 1; i-- ){
 				downHeap( i, heap, heap_size );
 			}
 
-			//* ¬‚³‚È•p“x‚Ìƒm[ƒh‚ğ‚Q‚Â‚Ã‚Â}‚ÅŒ‹‡‚µ‚È‚ª‚çƒcƒŠ[‚ğ\¬‚µ‚Ä‚ä‚­ **
+			//* å°ã•ãªé »åº¦ã®ãƒãƒ¼ãƒ‰ã‚’ï¼’ã¤ã¥ã¤æã§çµåˆã—ãªãŒã‚‰ãƒ„ãƒªãƒ¼ã‚’æ§‹æˆã—ã¦ã‚†ã **
 			TreeNode j,k;
 			Branch l;
 			int code_len_sort_i = 0;
@@ -269,7 +269,7 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 
 				heap[1] = l;
 				downHeap( 1, heap, heap_size );
-			}while( heap_size > 2 ); //** heap_size = 2‚Ì‚Æ‚«‚Í‚O‚Íg‚í‚È‚¢‚Ì‚Åc‚èˆê‚Â
+			}while( heap_size > 2 ); //** heap_size = 2ã®ã¨ãã¯ï¼ã¯ä½¿ã‚ãªã„ã®ã§æ®‹ã‚Šä¸€ã¤
 			
 			treeRoot = l;
 		}
@@ -279,13 +279,13 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * ƒcƒŠ[‚ÌŠe––’[‚Ìƒ‹[ƒg‚©‚ç‚Ì‹——£‚ğ‘ª‚Á‚ÄWŒv‚ğæ‚éŠÖ”.
-	 * ƒ‹[ƒg‚©‚ç‚Ì‹——£‚ğ‘ª‚éÛ‚ÉÄ‹A‚ğg‚¤.
+	 * ãƒ„ãƒªãƒ¼ã®å„æœ«ç«¯ã®ãƒ«ãƒ¼ãƒˆã‹ã‚‰ã®è·é›¢ã‚’æ¸¬ã£ã¦é›†è¨ˆã‚’å–ã‚‹é–¢æ•°.
+	 * ãƒ«ãƒ¼ãƒˆã‹ã‚‰ã®è·é›¢ã‚’æ¸¬ã‚‹éš›ã«å†å¸°ã‚’ä½¿ã†.
 	 *
-	 * @param node      •”•ªƒcƒŠ[‚Ìƒ‹[ƒgƒm[ƒh
-	 * @param len_count ƒ‹[ƒg‚©‚ç‚Ì‹——£‚ÌWŒv’l‚ğ•Ô‚·o—Íˆø”
-	 * @param depth     ‚Ğ‚Æ‚Âe‚Ìƒm[ƒh‚Ìƒ‹[ƒg‚©‚ç‚Ì‹——£
-	 * @param code      ƒnƒtƒ}ƒ“ƒR[ƒh
+	 * @param node      éƒ¨åˆ†ãƒ„ãƒªãƒ¼ã®ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰
+	 * @param len_count ãƒ«ãƒ¼ãƒˆã‹ã‚‰ã®è·é›¢ã®é›†è¨ˆå€¤ã‚’è¿”ã™å‡ºåŠ›å¼•æ•°
+	 * @param depth     ã²ã¨ã¤è¦ªã®ãƒãƒ¼ãƒ‰ã®ãƒ«ãƒ¼ãƒˆã‹ã‚‰ã®è·é›¢
+	 * @param code      ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰
 	 */
 	private void countLen( TreeNode node, int[] len_count, int depth, int code ){
 		if( node instanceof Leaf ){
@@ -299,7 +299,7 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 	}
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh‚Ì’·‚³‚ğ‰¼ƒcƒŠ[‚©‚çì‚é.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®é•·ã•ã‚’ä»®ãƒ„ãƒªãƒ¼ã‹ã‚‰ä½œã‚‹.
 	 *
 	 * @auther TURNER
 	 */
@@ -315,7 +315,7 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 		}
 		cum &= 0xFFFF;
 
-		//*** ’·‚·‚¬‚éƒnƒtƒ}ƒ“ƒR[ƒh‚ğ’Z‚­‚·‚é
+		//*** é•·ã™ãã‚‹ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã‚’çŸ­ãã™ã‚‹
 		if (cum > 0) {
 			System.err.println("17");
 			len_count[CODELEN_MAX] -= cum;	/* always len_cnt[16] > cum */
@@ -331,7 +331,7 @@ class StaticWriteHuff extends StaticHuffman implements ItfWriteHuff
 			} while (cum > 0);
 		}
 
-		//** ƒnƒtƒ}ƒ“ƒR[ƒh‚Ì•„†’·‚ğİ’è‚·‚é **
+		//** ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®ç¬¦å·é•·ã‚’è¨­å®šã™ã‚‹ **
 		int index = 0;
 		for (i = CODELEN_MAX; i > 0; i--) {
 			for( int k=0; k < len_count[i]; k++ ) {

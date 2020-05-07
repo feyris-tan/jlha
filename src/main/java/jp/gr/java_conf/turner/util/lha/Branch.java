@@ -8,11 +8,11 @@
 package jp.gr.java_conf.turner.util.lha;
 
 /**
- * ƒnƒtƒ}ƒ“ƒcƒŠ[—p‚Ì•ªŠòƒm[ƒh.
+ * ãƒãƒ•ãƒãƒ³ãƒ„ãƒªãƒ¼ç”¨ã®åˆ†å²ãƒãƒ¼ãƒ‰.
  */
 class Branch extends TreeNode
 {
-	TreeNode child_0 = null;	//0‚Ì}
-	TreeNode child_1 = null;	//1‚Ì}
+	TreeNode child_0 = null;	//0ã®æ
+	TreeNode child_1 = null;	//1ã®æ
 }
 

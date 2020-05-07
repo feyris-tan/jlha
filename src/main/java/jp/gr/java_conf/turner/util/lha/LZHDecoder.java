@@ -12,22 +12,22 @@ import java.io.IOException;
 class LZHDecoder extends LZHSlideDic {
 
 	
-	BitCutter cutter;       //ƒrƒbƒgƒJƒbƒ^[i“ü—ÍƒXƒgƒŠ[ƒ€‚©‚ç”CˆÓƒrƒbƒgæ“¾j
+	BitCutter cutter;       //ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆå…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ä»»æ„ãƒ“ãƒƒãƒˆå–å¾—ï¼‰
 
-	int now_pos = 0;        //ƒXƒ‰ƒCƒh«‘‚Ìˆ—’†‚Ìæ“ªˆÊ’u.
-	int match_pos = 0;      //ƒXƒ‰ƒCƒh«‘‚Ìˆê’vˆÊ’u
-	int match_len = 0;      //ƒXƒ‰ƒCƒh«‘‚Ìˆê’v’·
+	int now_pos = 0;        //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ã®å‡¦ç†ä¸­ã®å…ˆé ­ä½ç½®.
+	int match_pos = 0;      //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ã®ä¸€è‡´ä½ç½®
+	int match_len = 0;      //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ã®ä¸€è‡´é•·
 
-	ItfHuffman	hufC;       //ƒR[ƒh—pƒnƒtƒ}ƒ“«‘
-	ItfHuffman	hufP;       //ƒXƒ‰ƒCƒh«‘ƒ|ƒCƒ“ƒ^—pƒnƒtƒ}ƒ“«‘
+	ItfHuffman	hufC;       //ã‚³ãƒ¼ãƒ‰ç”¨ãƒãƒ•ãƒãƒ³è¾æ›¸
+	ItfHuffman	hufP;       //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ãƒã‚¤ãƒ³ã‚¿ç”¨ãƒãƒ•ãƒãƒ³è¾æ›¸
 
 	private long count = 0;
 
 	/**
-	 * ƒXƒ‰ƒCƒh«‘ƒfƒR[ƒ_[ƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ãƒ‡ã‚³ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * 
-	 * @param cmp_method «‘‚Ì‘å‚«‚³iƒrƒbƒg”j
-	 * @param cutter ƒrƒbƒgƒJƒbƒ^[i”CˆÓ‚Ìƒrƒbƒg‚ğØ‚èo‚·“ü—ÍƒXƒgƒŠ[ƒ€‚Ìƒ‰ƒbƒp[j
+	 * @param cmp_method è¾æ›¸ã®å¤§ãã•ï¼ˆãƒ“ãƒƒãƒˆæ•°ï¼‰
+	 * @param cutter ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆä»»æ„ã®ãƒ“ãƒƒãƒˆã‚’åˆ‡ã‚Šå‡ºã™å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒ©ãƒƒãƒ‘ãƒ¼ï¼‰
 	 */
 	protected LZHDecoder( int cmp_method, BitCutter cutter )
 	{
@@ -36,7 +36,7 @@ class LZHDecoder extends LZHSlideDic {
 	}
 
 	/**
-	 * Ã“Iƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ğ“Ç‚İ‚Ş.
+	 * é™çš„ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’èª­ã¿è¾¼ã‚€.
 	 * 
 	 * @exception java.io.IOException
 	 */
@@ -46,12 +46,12 @@ class LZHDecoder extends LZHSlideDic {
 		//int NT = 16+3;
 		//int PBIT = 5;		/* smallest integer such that (1 << PBIT) > * NP */
 		//int TBIT = 5;		/* smallest integer such that (1 << TBIT) > * NT */
-		//ƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚Ì¶¬
+		//ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç”Ÿæˆ
 		//StaticHuffman huf = new StaticHuffman(NT);
 		StaticHuffmanC tmp_hufC = new StaticHuffmanC( 512 );
 		StaticHuffmanP tmp_hufP = new StaticHuffmanP( huf_p_max );
 
-		//BitCutter‚©‚çƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ğ“Ç‚İ‚Ş.
+		//BitCutterã‹ã‚‰ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’èª­ã¿è¾¼ã‚€.
 		//huf.loadFrom( TBIT, 3, cutter );
 		//tmp_hufC.loadFrom( 9, huf, cutter);
 		tmp_hufC.loadFrom( 9, -1, cutter);
@@ -63,7 +63,7 @@ class LZHDecoder extends LZHSlideDic {
 	}
 
 	/**
-	 * “®“Iƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ğ‰Šú‰»‚·‚éilh1—pj.
+	 * å‹•çš„ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹ï¼ˆlh1ç”¨ï¼‰.
 	 * 
 	 */
 	protected void initHuffmanTableForLH1()
@@ -73,9 +73,9 @@ class LZHDecoder extends LZHSlideDic {
 	}
 
 	/**
-	 * ƒf[ƒ^‚ğ“WŠJ‚µ‚Â‚Â‚PƒoƒCƒgæ‚èo‚·.
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹ã—ã¤ã¤ï¼‘ãƒã‚¤ãƒˆå–ã‚Šå‡ºã™.
 	 * 
-	 * @return æ‚èo‚µ‚½‚PƒoƒCƒg‚Ô‚ñ‚Ìƒf[ƒ^
+	 * @return å–ã‚Šå‡ºã—ãŸï¼‘ãƒã‚¤ãƒˆã¶ã‚“ã®ãƒ‡ãƒ¼ã‚¿
 	 * @exception java.io.IOException
 	 */
 	protected int read()
@@ -89,10 +89,10 @@ class LZHDecoder extends LZHSlideDic {
 				block_size--;
 			}else{
 				if( block_size == 0 ){
-					//ƒuƒƒbƒNƒTƒCƒY‚Ì“Ç‚İ‚İ.
+					//ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã®èª­ã¿è¾¼ã¿.
 					block_size = ( ((0xFF)&cutter.getBits(8)) << 8 );
 					block_size |= (0xFF)&cutter.getBits(8);
-					//‚±‚ÌƒuƒƒbƒN—p‚Ìƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚Ì“Ç‚İ‚İ.
+					//ã“ã®ãƒ–ãƒ­ãƒƒã‚¯ç”¨ã®ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®èª­ã¿è¾¼ã¿.
 					loadStaticHuffmanTable();
 					block_size--;
 				}
@@ -101,17 +101,17 @@ class LZHDecoder extends LZHSlideDic {
 			c = 0x1FF & hufC.decode(cutter);
 			if( (c & 0x100) == 0 ){
 
-				dic[now_pos++] = (byte)c;	//«‘‚É“o˜^
-				now_pos &= dic_mask;	//pos‚ğ«‘“à‚É§ŒÀ
+				dic[now_pos++] = (byte)c;	//è¾æ›¸ã«ç™»éŒ²
+				now_pos &= dic_mask;	//posã‚’è¾æ›¸å†…ã«åˆ¶é™
 
 				
 				count++;
 			}
 			else{
-				//ˆê’v’·‚ğæ‚èo‚·
+				//ä¸€è‡´é•·ã‚’å–ã‚Šå‡ºã™
   				match_len = (c & 0x0FF) + THRESHOLD;
 					
-				//ˆê’vêŠ‚ğæ‚èo‚·
+				//ä¸€è‡´å ´æ‰€ã‚’å–ã‚Šå‡ºã™
 				int match_pos_wk = hufP.decode(cutter);
 				match_pos = (now_pos - match_pos_wk - 1) & dic_mask;
 
@@ -135,12 +135,12 @@ class LZHDecoder extends LZHSlideDic {
 	}
 	
 	/**
-	 * ƒf[ƒ^‚ğ“WŠJ‚µ‚Â‚Â”z—ñ‚Éæ‚èo‚·.
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹ã—ã¤ã¤é…åˆ—ã«å–ã‚Šå‡ºã™.
 	 * 
-	 * @param b    ƒf[ƒ^‚ğ“Ç‚İ‚ŞƒoƒCƒg‚Ì”z—ñ
-	 * @param off  ƒf[ƒ^‚Ì“Ç‚İ‚İŠJnˆÊ’u
-	 * @param len  ƒf[ƒ^‚ğ“Ç‚İ‚Ş’·‚³
-	 * @return æ‚èo‚µ‚½‚PƒoƒCƒg‚Ô‚ñ‚Ìƒf[ƒ^
+	 * @param b    ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ãƒã‚¤ãƒˆã®é…åˆ—
+	 * @param off  ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®
+	 * @param len  ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€é•·ã•
+	 * @return å–ã‚Šå‡ºã—ãŸï¼‘ãƒã‚¤ãƒˆã¶ã‚“ã®ãƒ‡ãƒ¼ã‚¿
 	 * @exception java.io.IOException
 	 */
 	protected void read( byte[] b, int off, int len )
@@ -156,10 +156,10 @@ class LZHDecoder extends LZHSlideDic {
 					block_size--;
 				}else{
 					if( block_size == 0 ){
-						//ƒuƒƒbƒNƒTƒCƒY‚Ì“Ç‚İ‚İ.
+						//ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã®èª­ã¿è¾¼ã¿.
 						block_size = ( ((0xFF)&cutter.getBits(8)) << 8 );
 						block_size |= (0xFF)&cutter.getBits(8);
-						//‚±‚ÌƒuƒƒbƒN—p‚Ìƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚Ì“Ç‚İ‚İ.
+						//ã“ã®ãƒ–ãƒ­ãƒƒã‚¯ç”¨ã®ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®èª­ã¿è¾¼ã¿.
 						loadStaticHuffmanTable();
 						block_size--;
 					}
@@ -167,14 +167,14 @@ class LZHDecoder extends LZHSlideDic {
 
 				c = hufC.decode(cutter);
 				if( (c & 0x100) == 0 ){
-					b[off++] = dic[now_pos++] = (byte)c;	//«‘‚É“o˜^
-					now_pos &= dic_mask;		//pos‚ğ«‘“à‚É§ŒÀ
+					b[off++] = dic[now_pos++] = (byte)c;	//è¾æ›¸ã«ç™»éŒ²
+					now_pos &= dic_mask;		//posã‚’è¾æ›¸å†…ã«åˆ¶é™
 					count++;
 				}
 				else{
-					//ˆê’v’·‚ğæ‚èo‚·
+					//ä¸€è‡´é•·ã‚’å–ã‚Šå‡ºã™
 	  				match_len = (c & 0x0FF) + THRESHOLD;
-					//ˆê’vêŠ‚ğæ‚èo‚·
+					//ä¸€è‡´å ´æ‰€ã‚’å–ã‚Šå‡ºã™
 					match_pos = (now_pos - hufP.decode(cutter) - 1) & dic_mask;
 					count++;
 				}

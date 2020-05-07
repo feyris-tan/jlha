@@ -9,7 +9,7 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * ƒXƒ‰ƒCƒh«‘ˆê’vˆÊ’uƒfƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘.
+ * ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ä¸€è‡´ä½ç½®ãƒ‡ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸.
  *
  * @author TURNER
  */
@@ -17,18 +17,18 @@ class StaticHuffmanP extends StaticHuffman
 {
 
 	/**
-	 * ƒXƒ‰ƒCƒh«‘ˆê’vˆÊ’uƒfƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘.
+	 * ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ä¸€è‡´ä½ç½®ãƒ‡ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸.
 	 *
-	 * @param size ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³
+	 * @param size ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•
 	 */
 	protected StaticHuffmanP( int size ){
 		super( size );
 	}
 
 	/**
-	 * ƒfƒR[ƒhˆ—.
+	 * ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†.
 	 *
-	 * @param cutter ƒf[ƒ^‚ğ“Ç‚İ‚ŞƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param cutter ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	public int decode( BitCutter cutter )
 		throws IOException

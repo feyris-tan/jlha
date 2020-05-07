@@ -9,7 +9,7 @@ import jp.gr.java_conf.turner.util.lha.LhaEntry;
 import jp.gr.java_conf.turner.util.lha.LhaInputStream;
 
 /**
- * Lhaライブラリ動作テストクラス
+ * Lha繝ｩ繧､繝悶Λ繝ｪ蜍穂ｽ懊ユ繧ｹ繝医け繝ｩ繧ｹ
  *
  * @author TURNER
  */

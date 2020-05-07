@@ -11,16 +11,16 @@ import java.io.*;
 
 
 /**
- * ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘‘‚«‚İ—p.
+ * ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸æ›¸ãè¾¼ã¿ç”¨.
  * 
  * @author TURNER
  */
 class StaticWriteHuffC extends StaticWriteHuff
 {
 	/**
-	 * ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“«‘‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒãƒ³è¾æ›¸ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * 
-	 * @param table_size ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³B
+	 * @param table_size ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•ã€‚
 	 */
 	protected StaticWriteHuffC( int table_size )
 	{
@@ -28,13 +28,13 @@ class StaticWriteHuffC extends StaticWriteHuff
 	}
 
 //	/**
-//	 * WŒvî•ñ‚ğŒ³‚Éƒnƒtƒ}ƒ“ƒcƒŠ[‚ğ\’z‚µƒtƒ@ƒCƒ‹‚É‘‚«‚Ş.
+//	 * é›†è¨ˆæƒ…å ±ã‚’å…ƒã«ãƒãƒ•ãƒãƒ³ãƒ„ãƒªãƒ¼ã‚’æ§‹ç¯‰ã—ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€.
 //	 *
-//	 * @param effective_len_bits —LŒø•„†”‚Ì“Ç‚İ‚İƒrƒbƒg”
-//	 * @param writeHuf           ‹ó”’ƒCƒ“ƒfƒbƒNƒXw’è
-//	 * @param packer             ƒrƒbƒgƒpƒbƒJ[iƒXƒgƒŠ[ƒ€j
+//	 * @param effective_len_bits æœ‰åŠ¹ç¬¦å·æ•°ã®èª­ã¿è¾¼ã¿ãƒ“ãƒƒãƒˆæ•°
+//	 * @param writeHuf           ç©ºç™½ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æŒ‡å®š
+//	 * @param packer             ãƒ“ãƒƒãƒˆãƒ‘ãƒƒã‚«ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 //	 *
-//	 * @param IOException IOƒGƒ‰[‚ª‹N‚±‚Á‚½‚Æ‚«
+//	 * @param IOException IOã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã£ãŸã¨ã
 //	 */
 //	protected void makeTreeAndSaveTo(  int effective_len_bits, int special_index,
 //			BitPacker packer )
@@ -43,8 +43,8 @@ class StaticWriteHuffC extends StaticWriteHuff
 //		Leaf[] sort = makeProvisionalTree();
 //		makeCodeLen( sort );
 //
-//		//ƒR[ƒh‚ª‚P‚Â‚µ‚©‚È‚¢ƒe[ƒuƒ‹‚Ìê‡
-//		//ƒnƒtƒ}ƒ“ƒR[ƒh‚ÌŠ„‚èU‚è‚Í‚¢‚ç‚È‚¢B
+//		//ã‚³ãƒ¼ãƒ‰ãŒï¼‘ã¤ã—ã‹ãªã„ãƒ†ãƒ¼ãƒ–ãƒ«ã®å ´åˆ
+//		//ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®å‰²ã‚ŠæŒ¯ã‚Šã¯ã„ã‚‰ãªã„ã€‚
 //		if( leafs.length > 1 ){
 //			makeTableCode();
 //		}
@@ -56,15 +56,15 @@ class StaticWriteHuffC extends StaticWriteHuff
 //	//		encodeTable[leafs[i].real_code] = leafs[i];
 //	//	}
 //
-//		setEncodeMode();//** ‚±‚êˆÈ~‚ÍƒGƒ“ƒR[ƒhƒ‚[ƒh
+//		setEncodeMode();//** ã“ã‚Œä»¥é™ã¯ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
 //	}
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh‚Ìƒrƒbƒg”‚ğ‘‚«‚Ş.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆæ•°ã‚’æ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param effective_len_bits ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³‚ğ“Ç‚İ‚Ş‚½‚ß‚Ìƒrƒbƒg”
-	 * @param special_index      ‚±‚ÌŠÖ”‚Å‚Í•sg—p
-	 * @param cutter             “Ç‚İ‚İ‚Ég—p‚·‚éƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param effective_len_bits ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®ãƒ“ãƒƒãƒˆæ•°
+	 * @param special_index      ã“ã®é–¢æ•°ã§ã¯ä¸ä½¿ç”¨
+	 * @param cutter             èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	protected void writeTableLen( int effective_len_bits, int special_index,
 			BitPacker packer )
@@ -84,22 +84,22 @@ class StaticWriteHuffC extends StaticWriteHuff
 			super.writeTableLen( effective_len_bits, 0, packer );
 		}else{
 
-			/* ƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚Ì‰Šú‰»‚Ì‚½‚ß‚É•p“x‚ğ”‚¦‚é */
+			/* ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®åˆæœŸåŒ–ã®ãŸã‚ã«é »åº¦ã‚’æ•°ãˆã‚‹ */
 			OutputStream dmy = new DmyOutputStream();
 			writeTableLenSub( effective_len_bits, writeHuf, new BitPacker( dmy ) );
 
-			/* ‘‚«‚Ş–{”Ô */
+			/* æ›¸ãè¾¼ã‚€æœ¬ç•ª */
 			writeHuf.makeTreeAndSaveTo( TBIT, 3, packer );
 			writeTableLenSub( effective_len_bits, writeHuf, packer );
 		}
 	}
 
 	/**
-	 * ƒnƒtƒ}ƒ“ƒR[ƒh‚Ìƒrƒbƒg”‚ğ‘‚«‚Ş.
+	 * ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆæ•°ã‚’æ›¸ãè¾¼ã‚€.
 	 * 
-	 * @param effective_len_bits ƒnƒtƒ}ƒ“«‘‚Ì‘å‚«‚³‚ğ“Ç‚İ‚Ş‚½‚ß‚Ìƒrƒbƒg”
-	 * @param writehuff          ‚±‚Ìƒnƒtƒ}ƒ“«‘‚ğ“Ç‚İ‚Ş‚Ì‚Ég—p‚·‚éƒnƒtƒ}ƒ“«‘
-	 * @param cutter             “Ç‚İ‚İ‚Ég—p‚·‚éƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param effective_len_bits ãƒãƒ•ãƒãƒ³è¾æ›¸ã®å¤§ãã•ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®ãƒ“ãƒƒãƒˆæ•°
+	 * @param writehuff          ã“ã®ãƒãƒ•ãƒãƒ³è¾æ›¸ã‚’èª­ã¿è¾¼ã‚€ã®ã«ä½¿ç”¨ã™ã‚‹ãƒãƒ•ãƒãƒ³è¾æ›¸
+	 * @param cutter             èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	private void writeTableLenSub( int effective_len_bits, StaticWriteHuff writehuf,
 			BitPacker packer )
@@ -113,9 +113,9 @@ class StaticWriteHuffC extends StaticWriteHuff
 			int code_len = leafs[i++].code_len;
 			if( code_len == 0 ){
 
-				/* ƒR[ƒh‚ª‹ó”’‚O‚Ì‚Ìˆ— */
+				/* ã‚³ãƒ¼ãƒ‰ãŒç©ºç™½ï¼ã®æ™‚ã®å‡¦ç† */
 
-				/* ‹ó”’‚Ì˜A‘±‚·‚é”‚ğ”‚¦‚é */
+				/* ç©ºç™½ã®é€£ç¶šã™ã‚‹æ•°ã‚’æ•°ãˆã‚‹ */
 				int zero_cnt = 1;
 				while( i < leafs.length && leafs[i].code_len == 0 ){
 					i++;
@@ -124,31 +124,31 @@ class StaticWriteHuffC extends StaticWriteHuff
 
 				if( zero_cnt <= 2 ){
 
-					/* ‹ó”’‚ª‚QŒÂ‚Ü‚Å‚Ì‚Æ‚« */
+					/* ç©ºç™½ãŒï¼’å€‹ã¾ã§ã®ã¨ã */
 					for( int j = 0; j < zero_cnt; j++ ){
 						writehuf.encode( 0, packer );
 					}
 				}else if ( zero_cnt <= 18 /* 2^4+3 */ ){
 
-					/* ‹ó”’‚ª18ŒÂ‚Ü‚Å‚Ì‚Æ‚« */
+					/* ç©ºç™½ãŒ18å€‹ã¾ã§ã®ã¨ã */
 					writehuf.encode( 1, packer );
 					packer.putBits( zero_cnt - 3, 4 );
 				}else if ( zero_cnt == 19 ){
 
-					/* ‹ó”’‚ª19ŒÂ‚Ì‚Æ‚«‚Í‚PŒÂ‚Ì‚Æ‚«‚Ìˆ—{18ŒÂ‚Ü‚Å‚Ìˆ— */
+					/* ç©ºç™½ãŒ19å€‹ã®ã¨ãã¯ï¼‘å€‹ã®ã¨ãã®å‡¦ç†ï¼‹18å€‹ã¾ã§ã®å‡¦ç† */
 					writehuf.encode( 0, packer );
 
 					writehuf.encode( 1, packer );
 					packer.putBits( 15 /* 18 - 3 */, 4 );
 				}else{
 
-					/* ‹ó”’‚ª20ŒÂˆÈã‚Ì‚Æ‚«‚Ìˆ— */
+					/* ç©ºç™½ãŒ20å€‹ä»¥ä¸Šã®ã¨ãã®å‡¦ç† */
 					writehuf.encode( 2, packer );
 					packer.putBits( zero_cnt - 20, effective_len_bits );
 				}
 			}else{
 
-				/* ‹ó”’ˆÈŠO‚Ì—LŒøƒR[ƒh‚Ì‚Ìˆ— */
+				/* ç©ºç™½ä»¥å¤–ã®æœ‰åŠ¹ã‚³ãƒ¼ãƒ‰ã®æ™‚ã®å‡¦ç† */
 				writehuf.encode( code_len + 2, packer );
 			}
 		}
@@ -156,7 +156,7 @@ class StaticWriteHuffC extends StaticWriteHuff
 }
 
 /**
- * ƒ_ƒ~[o—ÍƒXƒgƒŠ[ƒ€.
+ * ãƒ€ãƒŸãƒ¼å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ .
  * 
  * @author TURNER
  */

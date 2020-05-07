@@ -9,7 +9,7 @@ package jp.gr.java_conf.turner.util.lha;
 import java.io.*;
 
 /**
- * ƒXƒ‰ƒCƒhŽ«‘ˆê’vˆÊ’uƒGƒ“ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“Ž«‘.
+ * ã‚¹ãƒ©ã‚¤ãƒ‰è¾žæ›¸ä¸€è‡´ä½ç½®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒžãƒ³è¾žæ›¸.
  *
  * @author TURNER
  */
@@ -18,24 +18,24 @@ class StaticWriteHuffP extends StaticWriteHuff
 	int codelen_max;
 
 	/**
-	 * ƒXƒ‰ƒCƒhŽ«‘ˆê’vˆÊ’uƒGƒ“ƒR[ƒh—pÃ“Iƒnƒtƒ}ƒ“Ž«‘ƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ã‚¹ãƒ©ã‚¤ãƒ‰è¾žæ›¸ä¸€è‡´ä½ç½®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ç”¨é™çš„ãƒãƒ•ãƒžãƒ³è¾žæ›¸ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 *
-	 * @param size ƒnƒtƒ}ƒ“Ž«‘‚Ì‘å‚«‚³
+	 * @param size ãƒãƒ•ãƒžãƒ³è¾žæ›¸ã®å¤§ãã•
 	 */
 	protected StaticWriteHuffP( int size ){
 		super( size );
 	}
 
 	/**
-	 * ƒGƒ“ƒR[ƒhˆ—.
+	 * ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰å‡¦ç†.
 	 *
-	 * @param cutter ƒf[ƒ^‚ð“Ç‚Ýž‚ÞƒrƒbƒgƒJƒbƒ^[iƒXƒgƒŠ[ƒ€j
+	 * @param cutter ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 	 */
 	public void encode( int code, BitPacker packer )
 		throws IOException
 	{
 		int len = getCodeLen( code );
-		//* ƒGƒ“ƒR[ƒh‚µ‚Ä‘‚«o‚·
+		//* ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã—ã¦æ›¸ãå‡ºã™
 		super.encode( len, packer );
 		if( encodeModeFlg && len > 1 ){
 			packer.putBits( code & ((1 << (len-1)) - 1), (len-1) );
@@ -43,15 +43,15 @@ class StaticWriteHuffP extends StaticWriteHuff
 	}
 
 	/**
-	 * —LŒøƒR[ƒh’·‚ð”‚¦‚éŠÖ”.
-	 * Å‘å30ƒrƒbƒg‚Ü‚Å.
+	 * æœ‰åŠ¹ã‚³ãƒ¼ãƒ‰é•·ã‚’æ•°ãˆã‚‹é–¢æ•°.
+	 * æœ€å¤§30ãƒ“ãƒƒãƒˆã¾ã§.
 	 *
-	 * @param code ƒR[ƒh’·‚ð”‚¦‚éŽÀÛ‚ÌƒR[ƒh
+	 * @param code ã‚³ãƒ¼ãƒ‰é•·ã‚’æ•°ãˆã‚‹å®Ÿéš›ã®ã‚³ãƒ¼ãƒ‰
 	 *
-	 * @return —LŒøƒR[ƒh’·
+	 * @return æœ‰åŠ¹ã‚³ãƒ¼ãƒ‰é•·
 	 */
 	private int getCodeLen( int code ){
-		//* code‚Ì—LŒøƒrƒbƒg”‚ð”‚¦‚é
+		//* codeã®æœ‰åŠ¹ãƒ“ãƒƒãƒˆæ•°ã‚’æ•°ãˆã‚‹
 		int len;
 		for( len = 0; len <= 30; len++ ){
 			if( (1 << len) > code ) break;

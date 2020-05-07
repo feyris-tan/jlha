@@ -11,24 +11,24 @@ import java.io.IOException;
 
 class LZHEncoder extends LZHSlideDic {
 
-	BitPacker packer;       //ƒrƒbƒgƒJƒbƒ^[i“ü—ÍƒXƒgƒŠ[ƒ€‚©‚ç”CˆÓƒrƒbƒgŽæ“¾j
+	BitPacker packer;       //ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆå…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ä»»æ„ãƒ“ãƒƒãƒˆå–å¾—ï¼‰
 
-	int now_pos = 0;        //ƒXƒ‰ƒCƒhŽ«‘‚Ìˆ—’†‚Ìæ“ªˆÊ’u.
-	int match_pos = 0;      //ƒXƒ‰ƒCƒhŽ«‘‚Ìˆê’vˆÊ’u
-	int match_len = 0;      //ƒXƒ‰ƒCƒhŽ«‘‚Ìˆê’v’·
+	int now_pos = 0;        //ã‚¹ãƒ©ã‚¤ãƒ‰è¾žæ›¸ã®å‡¦ç†ä¸­ã®å…ˆé ­ä½ç½®.
+	int match_pos = 0;      //ã‚¹ãƒ©ã‚¤ãƒ‰è¾žæ›¸ã®ä¸€è‡´ä½ç½®
+	int match_len = 0;      //ã‚¹ãƒ©ã‚¤ãƒ‰è¾žæ›¸ã®ä¸€è‡´é•·
 
-	ItfWriteHuff	hufC;       //ƒR[ƒh—pƒnƒtƒ}ƒ“Ž«‘
-	ItfWriteHuff	hufP;       //ƒXƒ‰ƒCƒhŽ«‘ƒ|ƒCƒ“ƒ^—pƒnƒtƒ}ƒ“Ž«‘
+	ItfWriteHuff	hufC;       //ã‚³ãƒ¼ãƒ‰ç”¨ãƒãƒ•ãƒžãƒ³è¾žæ›¸
+	ItfWriteHuff	hufP;       //ã‚¹ãƒ©ã‚¤ãƒ‰è¾žæ›¸ãƒã‚¤ãƒ³ã‚¿ç”¨ãƒãƒ•ãƒžãƒ³è¾žæ›¸
 
 	private long count = 0;
 
 	private short[] block = new short[32768/8*7];
 
 	/**
-	 * ƒXƒ‰ƒCƒhŽ«‘ƒfƒR[ƒ_[ƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ã‚¹ãƒ©ã‚¤ãƒ‰è¾žæ›¸ãƒ‡ã‚³ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * 
-	 * @param dicbits Ž«‘‚Ì‘å‚«‚³iƒrƒbƒg”j
-	 * @param packer ƒrƒbƒgƒJƒbƒ^[i”CˆÓ‚Ìƒrƒbƒg‚ðØ‚èo‚·“ü—ÍƒXƒgƒŠ[ƒ€‚Ìƒ‰ƒbƒp[j
+	 * @param dicbits è¾žæ›¸ã®å¤§ãã•ï¼ˆãƒ“ãƒƒãƒˆæ•°ï¼‰
+	 * @param packer ãƒ“ãƒƒãƒˆã‚«ãƒƒã‚¿ãƒ¼ï¼ˆä»»æ„ã®ãƒ“ãƒƒãƒˆã‚’åˆ‡ã‚Šå‡ºã™å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒ©ãƒƒãƒ‘ãƒ¼ï¼‰
 	 */
 	protected LZHEncoder( int cmp_method, BitPacker packer )
 	{
@@ -39,7 +39,7 @@ class LZHEncoder extends LZHSlideDic {
 	}
 
 	/**
-	 * Ã“Iƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ð‘‚«ž‚Þ.
+	 * é™çš„ãƒãƒ•ãƒžãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ›¸ãè¾¼ã‚€.
 	 * 
 	 * @exception java.io.IOException
 	 */
@@ -53,19 +53,19 @@ class LZHEncoder extends LZHSlideDic {
 	}
 
 	/**
-	 * Ã“Iƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ð‰Šú‰»‚·‚é.
+	 * é™çš„ãƒãƒ•ãƒžãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹.
 	 *
 	 * @exception java.io.IOException
 	 */
 	private void initStaticHuffmanTable()
 	{
-		//ƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚Ì¶¬
+		//ãƒãƒ•ãƒžãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç”Ÿæˆ
 		hufC = new StaticWriteHuffC( 512 );
 		hufP = new StaticWriteHuffP( huf_p_max );
 	}
 
 	/**
-	 * “®“Iƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ð‰Šú‰»‚·‚éilh1—pj.
+	 * å‹•çš„ãƒãƒ•ãƒžãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹ï¼ˆlh1ç”¨ï¼‰.
 	 * 
 	 */
 	protected void initHuffmanTableForLH1()
@@ -76,9 +76,9 @@ class LZHEncoder extends LZHSlideDic {
 	}
 
 	/**
-	 * ƒf[ƒ^‚ð“WŠJ‚µ‚Â‚Â‚PƒoƒCƒgŽæ‚èo‚·.
+	 * ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹ã—ã¤ã¤ï¼‘ãƒã‚¤ãƒˆå–ã‚Šå‡ºã™.
 	 * 
-	 * @return Žæ‚èo‚µ‚½‚PƒoƒCƒg‚Ô‚ñ‚Ìƒf[ƒ^
+	 * @return å–ã‚Šå‡ºã—ãŸï¼‘ãƒã‚¤ãƒˆã¶ã‚“ã®ãƒ‡ãƒ¼ã‚¿
 	 * @exception java.io.IOException
 	 */
 	protected void write( int c )
@@ -94,8 +94,8 @@ class LZHEncoder extends LZHSlideDic {
 		hufC.encode( c, packer );
 
 
-		//LH1ˆÈŠO‚Ì‚Æ‚«‚Íblock_size‚ðXV‚·‚é
-		//block_size‚ª–ž”t‚É‚È‚Á‚½‚çƒtƒ‰ƒbƒVƒ…‚·‚é
+		//LH1ä»¥å¤–ã®ã¨ãã¯block_sizeã‚’æ›´æ–°ã™ã‚‹
+		//block_sizeãŒæº€æ¯ã«ãªã£ãŸã‚‰ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹
 		if( block_size >= 0 ){
 			block_size++;
 			if( block_size == block.length ){

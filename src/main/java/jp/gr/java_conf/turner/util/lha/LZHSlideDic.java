@@ -10,22 +10,22 @@ package jp.gr.java_conf.turner.util.lha;
 import java.util.*;
 
 abstract class LZHSlideDic {
-	static final int THRESHOLD = 3; //ˆê’v’·‚ÌÅ¬ƒTƒCƒY
+	static final int THRESHOLD = 3; //ä¸€è‡´é•·ã®æœ€å°ã‚µã‚¤ã‚º
 
-	byte[] dic;     //ƒXƒ‰ƒCƒh«‘
-	int dic_mask;   //ƒXƒ‰ƒCƒh«‘ƒCƒ“ƒfƒbƒNƒX‚Ìƒ‰ƒbƒvƒAƒ‰ƒEƒ“ƒh—pƒ}ƒXƒN
+	byte[] dic;     //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸
+	int dic_mask;   //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ©ãƒƒãƒ—ã‚¢ãƒ©ã‚¦ãƒ³ãƒ‰ç”¨ãƒã‚¹ã‚¯
 	
-	int block_size = 0;     //ƒuƒƒbƒNƒTƒCƒYiLH4`‚ÅLH7‚Åg—pj
-	int huf_p_bits = 0;     //ƒXƒ‰ƒCƒh«‘ƒ|ƒCƒ“ƒ^—pƒnƒtƒ}ƒ“«‘A—LŒøƒTƒCƒY“Ç‚İ‚İƒrƒbƒg”
-	int huf_p_max = 0;      //ƒXƒ‰ƒCƒh«‘ƒ|ƒCƒ“ƒ^—pƒnƒtƒ}ƒ“«‘AÅ‘åƒTƒCƒY
+	int block_size = 0;     //ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºï¼ˆLH4ï½ã§LH7ã§ä½¿ç”¨ï¼‰
+	int huf_p_bits = 0;     //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ãƒã‚¤ãƒ³ã‚¿ç”¨ãƒãƒ•ãƒãƒ³è¾æ›¸ã€æœ‰åŠ¹ã‚µã‚¤ã‚ºèª­ã¿è¾¼ã¿ãƒ“ãƒƒãƒˆæ•°
+	int huf_p_max = 0;      //ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ãƒã‚¤ãƒ³ã‚¿ç”¨ãƒãƒ•ãƒãƒ³è¾æ›¸ã€æœ€å¤§ã‚µã‚¤ã‚º
 
-	int cmp_method;         //ˆ³kƒƒ\ƒbƒh
+	int cmp_method;         //åœ§ç¸®ãƒ¡ã‚½ãƒƒãƒ‰
 
 
 	/**
-	 * ƒXƒ‰ƒCƒh«‘ƒfƒR[ƒ_[ƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	 * ã‚¹ãƒ©ã‚¤ãƒ‰è¾æ›¸ãƒ‡ã‚³ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	 * 
-	 * @param cmp_method «‘‚Ì‘å‚«‚³iƒrƒbƒg”j
+	 * @param cmp_method è¾æ›¸ã®å¤§ãã•ï¼ˆãƒ“ãƒƒãƒˆæ•°ï¼‰
 	 */
 	protected LZHSlideDic( int cmp_method )
 	{
@@ -33,38 +33,38 @@ abstract class LZHSlideDic {
 		this.cmp_method = cmp_method;
 		switch( cmp_method ){
 		case LhaInputStream.CMP_TYPE_LH1:
-			dicbits = 12;		//‚S‚jƒoƒCƒg
-			//LH1‚Å‚Íƒnƒtƒ}ƒ“ƒe[ƒuƒ‹‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ü‚È‚¢‚Ì‚Å
-			//huf_p_bits‚Ì’l‚Íg—p‚µ‚È‚¢.
+			dicbits = 12;		//ï¼”ï¼«ãƒã‚¤ãƒˆ
+			//LH1ã§ã¯ãƒãƒ•ãƒãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¾ãªã„ã®ã§
+			//huf_p_bitsã®å€¤ã¯ä½¿ç”¨ã—ãªã„.
 			huf_p_max = 1 << (12 - 6);
 			initHuffmanTableForLH1();
-			block_size = -1;//lh1‚É‚ÍƒuƒƒbƒN‚ª‚È‚¢‚Ì‚Å–³Œø‚ğ•\‚·-1
+			block_size = -1;//lh1ã«ã¯ãƒ–ãƒ­ãƒƒã‚¯ãŒãªã„ã®ã§ç„¡åŠ¹ã‚’è¡¨ã™-1
 			break;
 		case LhaInputStream.CMP_TYPE_LH4:
-			dicbits = 12;		//‚S‚jƒoƒCƒg
+			dicbits = 12;		//ï¼”ï¼«ãƒã‚¤ãƒˆ
 			huf_p_bits = 4;
 			huf_p_max = 14;
 			block_size = 0;
 			break;
 		case LhaInputStream.CMP_TYPE_LH5:
-			dicbits = 13;		//‚W‚jƒoƒCƒg
+			dicbits = 13;		//ï¼˜ï¼«ãƒã‚¤ãƒˆ
 			huf_p_bits = 4;
 			huf_p_max = 14;
 			block_size = 0;
 			break;
 		case LhaInputStream.CMP_TYPE_LH6:
 /*
-*			UNLHA32.DLL‚Ìƒwƒ‹ƒv‚É‚æ‚é‚Æ
-*			LH6‚Ìƒwƒbƒ_‚ÅLH7‚Åˆ³k‚³‚ê‚½ƒtƒ@ƒCƒ‹‚à‘¶İ‚·‚é‚ç‚µ‚¢.
+*			UNLHA32.DLLã®ãƒ˜ãƒ«ãƒ—ã«ã‚ˆã‚‹ã¨
+*			LH6ã®ãƒ˜ãƒƒãƒ€ã§LH7ã§åœ§ç¸®ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚‚å­˜åœ¨ã™ã‚‹ã‚‰ã—ã„.
 *
-*			dicbits = 15;		//‚R‚Q‚jƒoƒCƒg
+*			dicbits = 15;		//ï¼“ï¼’ï¼«ãƒã‚¤ãƒˆ
 *			huf_p_bits = 5;
 *			huf_p_max = 16;
 *			block_size = 0;
 *			break;
 */
 		case LhaInputStream.CMP_TYPE_LH7:
-			dicbits = 16;		//‚U‚S‚jƒoƒCƒg
+			dicbits = 16;		//ï¼–ï¼”ï¼«ãƒã‚¤ãƒˆ
 			huf_p_bits = 5;
 			huf_p_max = 32;
 			block_size = 0;

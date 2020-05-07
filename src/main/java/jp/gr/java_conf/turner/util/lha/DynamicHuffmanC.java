@@ -12,8 +12,8 @@ class DynamicHuffmanC extends DynamicHuffman
 {
 	
 	/**
-	 * “®“Iƒnƒtƒ}ƒ“ƒR[ƒh•œ†ƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param n_max	‘ÎÛ‚Æ‚·‚éƒR[ƒh‚Ì”i”ÍˆÍj
+	 * å‹•çš„ãƒãƒ•ãƒãƒ³ã‚³ãƒ¼ãƒ‰å¾©å·ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param n_max	å¯¾è±¡ã¨ã™ã‚‹ã‚³ãƒ¼ãƒ‰ã®æ•°ï¼ˆç¯„å›²ï¼‰
 	 */
 	DynamicHuffmanC( int 	n_max )
 	{

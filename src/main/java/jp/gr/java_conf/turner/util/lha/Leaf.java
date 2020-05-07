@@ -8,11 +8,11 @@
 package jp.gr.java_conf.turner.util.lha;
 
 /**
- * ƒnƒtƒ}ƒ“ƒcƒŠ[—p‚Ì—ti––’[ƒm[ƒhj.
+ * ãƒãƒ•ãƒãƒ³ãƒ„ãƒªãƒ¼ç”¨ã®è‘‰ï¼ˆæœ«ç«¯ãƒãƒ¼ãƒ‰ï¼‰.
  */
 class Leaf extends TreeNode
 {
-	int code = 0;       //ƒnƒtƒ}ƒ“•„†			(StaticHuffman‚Åg—p)
-	int code_len = 0;   //ƒnƒtƒ}ƒ“•„†‚Ìƒrƒbƒg”(StaticHuffman‚Åg—p)
-	int real_code;      //–{—ˆ‚ÌƒR[ƒh
+	int code = 0;       //ãƒãƒ•ãƒãƒ³ç¬¦å·			(StaticHuffmanã§ä½¿ç”¨)
+	int code_len = 0;   //ãƒãƒ•ãƒãƒ³ç¬¦å·ã®ãƒ“ãƒƒãƒˆæ•°(StaticHuffmanã§ä½¿ç”¨)
+	int real_code;      //æœ¬æ¥ã®ã‚³ãƒ¼ãƒ‰
 }
